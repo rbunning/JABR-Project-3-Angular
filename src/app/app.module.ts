@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-
+import { UserService } from './login/user.service';
 
 @NgModule({
   declarations: [
@@ -24,9 +24,11 @@ import { RegisterComponent } from './register/register.component';
     RouterModule,
     FormsModule,
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot([
+      ])
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
