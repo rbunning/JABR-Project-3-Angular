@@ -1,7 +1,7 @@
 {
     "/": {
       // localhost port 8888 is where our Zuul runs locally
-      "target": "http://localhost:8888/",
+      "target": "http://localhost:8765/",
       // set it to false means that we don't need SSL cert
       "secure": false
     }
