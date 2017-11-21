@@ -11,11 +11,17 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserService } from './login/user.service';
+
+import { ScrumHomeComponent } from './scrum-home/scrum-home.component';
+import { UserHomeComponent } from './user-home/user-home.component';
 import { TaskComponent } from './task/task.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'scrum-home', component: ScrumHomeComponent},
+  { path: 'user-home', component: UserHomeComponent}
 ]
 
 @NgModule({
@@ -24,7 +30,10 @@ const routes: Routes = [
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
+    ScrumHomeComponent,
+    UserHomeComponent,
     TaskComponent
+
   ],
   imports: [
     BrowserModule,
