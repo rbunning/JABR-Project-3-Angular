@@ -5,7 +5,7 @@ import { User } from './user.interface';
 
 @Injectable()
 export class UserService {
-  private static readonly LOGIN_URL = '/login';
+  private static readonly LOGIN_URL = 'user-service/login';
 
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
