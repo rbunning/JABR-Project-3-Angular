@@ -35,7 +35,6 @@ const routes: Routes = [
     ScrumHomeComponent,
     UserHomeComponent,
     TaskComponent
-
   ],
   imports: [
     BrowserModule,
