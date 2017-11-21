@@ -11,6 +11,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserService } from './login/user.service';
+
 import { ScrumHomeComponent } from './scrum-home/scrum-home.component';
 import { UserHomeComponent } from './user-home/user-home.component';
 import { TaskComponent } from './task/task.component';
