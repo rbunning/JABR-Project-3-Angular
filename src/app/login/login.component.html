@@ -1,18 +1,38 @@
-
+<!--
 <div class="container">
 
       <form (ngSubmit)="onSubmit" class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputEmail" class="sr-only">Enter Username</label>
-        <input ([ngModel])="user.username" type="username" id="inputUsername" class="form-control" placeholder="Username" required="" autofocus="">
+
+        <input ([ngModel])="user.scrumUserUsername" type="username" id="inputUsername" class="form-control" placeholder="Username" required="" autofocus="">
+
         <label for="inputPassword" class="sr-only">Enter Password</label>
-        <input ([ngModel])="user.password" type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-<!--         <div class="checkbox">
+        <input ([ngModel])="user.scrumUserPassword" type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+       <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me
           </label>
-        </div> -->
+        </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
 
-    </div>
+    </div> -->
+
+<div class="container">
+  <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="username">Username</label> <input type="text"
+          class="form-control" id="username" placeholder="Enter username"
+          [(ngModel)]="user.scrumUserUsername" name="username" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label> <input type="password"
+          class="form-control" id="password" placeholder="Enter password"
+          [(ngModel)]="user.scrumUserPassword" name="password" required>
+      </div>
+
+      <button class="btn btn-md btn-primary btn-block" type="submit">Sign in</button>
+  </form>
+</div>
