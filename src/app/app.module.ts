@@ -13,6 +13,8 @@ import { RegisterComponent } from './register/register.component';
 import { UserService } from './login/user.service';
 import { ScrumHomeComponent } from './scrum-home/scrum-home.component';
 import { UserHomeComponent } from './user-home/user-home.component';
+import { TaskComponent } from './task/task.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -28,7 +30,8 @@ const routes: Routes = [
     LoginComponent,
     RegisterComponent,
     ScrumHomeComponent,
-    UserHomeComponent
+    UserHomeComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,
