@@ -2,6 +2,12 @@
   task works!
 </p>
 
-<input ([ngModel])="task.description" type="description" id="taskDescriptionInput" class="form-control" data-ng-click="newTaskDescription = null" data-ng-show="isDev" data-ng-model="newTaskDescription" 
+<div class ="container">
+  
+<form (ngSubmit)="taskSubmit" class="form-signin">
+<!-- change this eventually to put into a story -->
+<input ([ngModel])="task.description" type="text" id="inputDescription" class="form-control" ng-click="inputDescription = null" data-ng-show="isDev"  
     type="text" placeholder="New Task">
-<button data-ng-click="addTask(story.story, newTaskDescription)" data-ng-show="isDev" class="btn btn-default">Add New Task</button>
+<button ng-click="addTask(story.story, inputDescription)" type="submit" data-ng-show="isDev" class="btn btn-default">Add New Task</button>
+</form>
+</div>

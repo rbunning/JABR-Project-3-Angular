@@ -20,4 +20,12 @@ export class TaskComponent implements OnInit {
   ngOnInit() {
   }
 
+  taskSubmit() {
+    this.taskService.createTask(this.task).subscribe(
+      res => {
+        
+      }
+    )
+  }
+
 }

@@ -12,10 +12,12 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserService } from './login/user.service';
 import { TaskComponent } from './task/task.component';
+import { TaskService } from './task/task.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'task', component: TaskComponent}
 ]
 
 @NgModule({
@@ -34,7 +36,7 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [DatePipe, UserService],
+  providers: [DatePipe, UserService, TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
