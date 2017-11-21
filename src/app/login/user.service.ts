@@ -17,6 +17,7 @@ export class UserService {
   //Inject User interface to user, using Observable for async data
   //It's a normal post request
   loginUser(user: User): Observable<any> {
+    console.log(user.scrumUserUsername + ' ' + user.scrumUserPassword);
     return this.http.post(UserService.LOGIN_URL, user, {headers: this.headers});
   }
 }
