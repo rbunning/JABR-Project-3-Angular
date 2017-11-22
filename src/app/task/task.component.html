@@ -1,13 +1,15 @@
-<p>
-  task works!
-</p>
-
 <div class ="container">
   
-<form (ngSubmit)="taskSubmit" class="form-signin">
-<!-- change this eventually to put into a story -->
-<input ([ngModel])="task.description" type="text" id="inputDescription" class="form-control" ng-click="inputDescription = null" data-ng-show="isDev"  
-    type="text" placeholder="New Task">
-<button ng-click="addTask(story.story, inputDescription)" type="submit" data-ng-show="isDev" class="btn btn-default">Add New Task</button>
+<form (ngSubmit)="taskSubmit()">
+<!-- change this eventually to put into a story, add functionality to clear text when clicked, filter/validation to hide if not Master/Dev -->
+<div class="form-group">
+  <label for="storyId"> Story ID:</label> <input type="text" [(ngModel)]="task.storyId" name ="storyId" 
+      id="storyId" class="form-control" placeholder="Story ID">
+</div>
+<div class="form-group">
+    <label for="description"> Description:</label><input type="text" [(ngModel)]="task.description" name="description" 
+     id="description" class="form-control" placeholder="New Task Description"><br>
+  <button type="submit" class="btn btn-md btn-primary btn-block">Add New Task</button>
+</div>
 </form>
 </div>

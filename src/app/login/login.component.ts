@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { User } from './user.interface';
 import { UserService } from './user.service';
 import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -47,5 +48,6 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('/user-home')
           localStorage.setItem('currentUser', JSON.stringify(res));
         }
-  }
+      });
+      }
 }
