@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Board } from './board.interface';
 
-@Injectable
+@Injectable()
 export class BoardsService {
   private static readonly BOARDS_URL = '/board-manager-service/getBoards';
 

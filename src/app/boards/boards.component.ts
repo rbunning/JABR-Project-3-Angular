@@ -28,11 +28,11 @@ export class BoardsComponent implements OnInit {
 
   roleId = JSON.parse(localStorage.getItem('currentUser')).roleType.roleId;
 
-  displayAllBoards(): void {
+  displayAllBoards() {
     this.boardsService.getBoards(this.scrumUserId).subscribe(
       res => {
         this.board = res;
-        console.log(res);
+        console.log("This is somethign for board ", res);
         localStorage.setItem('currentBoards', JSON.stringify(res));
       })
   }
