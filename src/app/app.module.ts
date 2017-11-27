@@ -30,7 +30,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent },
   { path: 'task', component: TaskComponent},
-  { path: 'scrum-home', component: ScrumHomeComponent},
+  { path: 'scrum-home', redirectTo: 'boards', pathMatch: 'full'},
   { path: 'boards', component: BoardsComponent}
 ]
 
