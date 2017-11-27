@@ -8,13 +8,15 @@ import { Board } from './board.interface';
 export class BoardsService {
   private static readonly BOARDS_URL = '/board-manager-service/getBoards';
 
-  private headers = new HttpHeaders({'Content-Type': 'text/plain'});
+  // private headers = new HttpHeaders({'Content-Type': 'text/plain'});
+  // private headers1 = new HttpHeaders('Content-Type': 'application/json');
 
   constructor(private http: HttpClient){}
 
   getBoards(scrumUserId: number): Observable<any> {
+    const headers = new HttpHeaders({'Content-Type': 'text/plain'});
     console.log("scrumUserId: ", scrumUserId);
-    return this.http.post(BoardsService.BOARDS_URL, scrumUserId, {headers: this.headers});
+    return this.http.post(BoardsService.BOARDS_URL, scrumUserId, {headers: headers});
   }
 
   private handleError(error: any): Promise<any> {
