@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-boards',
@@ -12,4 +14,7 @@ export class BoardsComponent implements OnInit {
   ngOnInit() {
   }
 
+  var scrumUserId = JSON.parse(localStorage.getItem('currentUser').scrumUserId);
+
 }
+
