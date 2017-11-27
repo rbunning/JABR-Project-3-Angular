@@ -10,7 +10,9 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+
 import { UserService } from './login/user.service';
+import { BoardsService } from './boards/boards.service';
 
 import { ScrumHomeComponent } from './scrum-home/scrum-home.component';
 import { UserHomeComponent } from './user-home/user-home.component';
@@ -24,7 +26,8 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent },
   { path: 'scrum-home', component: ScrumHomeComponent},
-  { path: 'user-home', component: UserHomeComponent}
+  { path: 'user-home', component: UserHomeComponent},
+  { path: 'boards', component: BoardsComponent}
 ]
 
 @NgModule({
@@ -48,7 +51,7 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [DatePipe, UserService],
+  providers: [DatePipe, UserService, BoardsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

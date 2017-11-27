@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavbarComponenet } from '../navbar/navbar.component';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-scrum-home',

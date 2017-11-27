@@ -47,5 +47,6 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('/user-home')
           localStorage.setItem('currentUser', JSON.stringify(res));
         }
+    });
   }
 }
