@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { BoardsService } from './boards.service';
 import { Board } from './board.interface';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-boards',
@@ -12,7 +13,7 @@ import { Board } from './board.interface';
 })
 export class BoardsComponent implements OnInit {
 
-  board: Board[];
+  boards: Board[];
 
   constructor(
     private router: Router,
@@ -31,8 +32,8 @@ export class BoardsComponent implements OnInit {
   displayAllBoards() {
     this.boardsService.getBoards(this.scrumUserId).subscribe(
       res => {
-        this.board = res;
-        console.log("This is somethign for board ", res);
+        this.boards = res;
+        console.log("This is somethign for board ", this.boards);
         localStorage.setItem('currentBoards', JSON.stringify(res));
       })
   }

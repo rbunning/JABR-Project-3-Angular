@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
         //   console.log('Login successful -POST ', res);
         //   this.router.navigateByUrl('/user-home')
         //   localStorage.setItem('currentUser', JSON.stringify(res));
-        }
     });
   }
 }

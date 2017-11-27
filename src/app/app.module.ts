@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/register.component';
 
 import { UserService } from './login/user.service';
 import { BoardsService } from './boards/boards.service';
+import { NavbarService } from './navbar/navbar.service';
 
 import { ScrumHomeComponent } from './scrum-home/scrum-home.component';
 import { UserHomeComponent } from './user-home/user-home.component';
@@ -51,7 +52,7 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [DatePipe, UserService, BoardsService],
+  providers: [DatePipe, UserService, BoardsService, NavbarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

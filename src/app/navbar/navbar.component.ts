@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
+  roleId = JSON.parse(localStorage.getItem('currentUser')).roleType.roleId;
+
   constructor() { }
 
   ngOnInit() {
