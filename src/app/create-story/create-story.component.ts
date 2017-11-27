@@ -11,11 +11,11 @@ import { Router } from '@angular/router';
 export class CreateStoryComponent implements OnInit {
 
   story: CreateStory = {
-    storyId:   1, // need to be change so that it rights to a certain board
+    storyId:   null, // need to be change so that it rights to a certain board
     storyDesc:  '',
     storyName: '',
     storyPoints: null,
-    board: null
+    board: 1
   }
 
   constructor(
