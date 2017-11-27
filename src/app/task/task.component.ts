@@ -16,12 +16,16 @@ export class TaskComponent implements OnInit {
     storyId: null,  //change this later to import Story and get storyId from there
     description : ''
   }
+
+  _tasksArray: Task[];
+
   constructor(
     private taskService: TaskService, 
     private router: Router
   ) { }
 
   ngOnInit() {
+    
   }
 
   taskSubmit() {
@@ -30,6 +34,18 @@ export class TaskComponent implements OnInit {
       res => {
           console.log("Create Task Success!", res);
       });
+  }
+
+  getTasksSubmit(storyIdInput) {
+
+    console.log("Get tasks by this ID: " + storyIdInput);
+    this.taskService.getTasks(storyIdInput).subscribe(
+      res => {
+        console.log("Get tasks success!", res);
+        //places reponse of task-manager-service/getAllTasks/{storyId} into task array
+        this._tasksArray = res;
+      }
+    )
   }
 
 }
