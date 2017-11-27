@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Task } from './task.interface';
 import { TaskService } from './task.service';
 import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-task',
