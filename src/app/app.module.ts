@@ -17,11 +17,14 @@ import { UserHomeComponent } from './user-home/user-home.component';
 import { TaskComponent } from './task/task.component';
 import { TaskService } from './task/task.service';
 
+import { CreateStoryComponent } from './create-story/create-story.component';
+import {CreateStoryService} from './create-story/create-story.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent },
   { path: 'task', component: TaskComponent},
+  { path: 'create-story', component: CreateStoryComponent},
   { path: 'scrum-home', component: ScrumHomeComponent},
   { path: 'user-home', component: UserHomeComponent}
 ]
@@ -34,7 +37,8 @@ const routes: Routes = [
     RegisterComponent,
     ScrumHomeComponent,
     UserHomeComponent,
-    TaskComponent
+    TaskComponent,
+    CreateStoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,7 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [DatePipe, UserService, TaskService],
+  providers: [DatePipe, UserService, TaskService, CreateStoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
