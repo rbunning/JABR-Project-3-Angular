@@ -16,7 +16,6 @@ import { BoardsService } from './boards/boards.service';
 import { NavbarService } from './navbar/navbar.service';
 
 import { ScrumHomeComponent } from './scrum-home/scrum-home.component';
-import { UserHomeComponent } from './user-home/user-home.component';
 import { TaskComponent } from './task/task.component';
 
 import { HomeComponent } from './home/home.component';
@@ -31,8 +30,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent },
   { path: 'task', component: TaskComponent},
-  { path: 'scrum-home', component: ScrumHomeComponent},
-  { path: 'user-home', component: UserHomeComponent},
+  { path: 'scrum-home', redirectTo: 'boards', pathMatch: 'full'},
   { path: 'boards', component: BoardsComponent}
 ]
 
@@ -43,7 +41,6 @@ const routes: Routes = [
     LoginComponent,
     RegisterComponent,
     ScrumHomeComponent,
-    UserHomeComponent,
     TaskComponent,
     HomeComponent,
     BoardsComponent,
