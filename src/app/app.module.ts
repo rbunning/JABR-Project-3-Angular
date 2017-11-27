@@ -10,7 +10,10 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+
 import { UserService } from './login/user.service';
+import { BoardsService } from './boards/boards.service';
+import { NavbarService } from './navbar/navbar.service';
 
 import { ScrumHomeComponent } from './scrum-home/scrum-home.component';
 import { UserHomeComponent } from './user-home/user-home.component';
@@ -29,7 +32,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'task', component: TaskComponent},
   { path: 'scrum-home', component: ScrumHomeComponent},
-  { path: 'user-home', component: UserHomeComponent}
+  { path: 'user-home', component: UserHomeComponent},
+  { path: 'boards', component: BoardsComponent}
 ]
 
 @NgModule({
@@ -53,7 +57,9 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [DatePipe, UserService, TaskService],
+
+  providers: [DatePipe, UserService, BoardsService, NavbarService, TaskService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
