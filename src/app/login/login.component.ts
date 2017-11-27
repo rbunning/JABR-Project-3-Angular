@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { User } from './user.interface';
 import { UserService } from './user.service';
 import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -35,6 +36,7 @@ export class LoginComponent implements OnInit {
       //   console.log('Now completed');
       // });
       console.log('Login successful -POST ', res);
+
       // if(res.roleType.roleId == 2){
       console.log('Login successful -POST ', res);
       this.router.navigateByUrl('/scrum-home');
@@ -48,4 +50,5 @@ export class LoginComponent implements OnInit {
         //   localStorage.setItem('currentUser', JSON.stringify(res));
     });
   }
+
 }
