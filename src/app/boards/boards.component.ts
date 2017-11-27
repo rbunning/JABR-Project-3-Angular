@@ -14,6 +14,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 export class BoardsComponent implements OnInit {
 
   boards: Board[];
+  selectedBoard: Board;
 
   constructor(
     private router: Router,
@@ -36,6 +37,10 @@ export class BoardsComponent implements OnInit {
         console.log("This is somethign for board ", this.boards);
         localStorage.setItem('currentBoards', JSON.stringify(res));
       })
+  }
+
+  onSelect(board: Board): void {
+    this.selectedBoard = board;
   }
 }
 
