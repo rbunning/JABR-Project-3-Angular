@@ -1,0 +1,43 @@
+-----------------------------
+---Story Service Endpoints---
+-----------------------------
+--CREATE--
+POST /addStory
+  key: board, value: (Board ID)
+  key: storyName, value: (String Value)
+  key: storyPoints, value: (int Value)
+  key: storyDesc, value: (String Value)
+
+--READ--
+GET /story/{Story ID}
+
+POST /allStories/{lane Type ID} // Probably won't need this one
+  key: board, value: (Board ID)
+
+POST /allStories
+  key: board, value: (Board ID)
+  key: laneType, value: (lane Type ID)
+
+--UPDATE--
+POST /moveStoryLane/{lane Type ID} // Probably won't need this one
+  key: board, value: (Story ID)
+
+POST /moveStoryLane
+  key: board, value: (Story ID)
+  key: laneType, value: (lane Type ID)
+
+--DELETE--
+
+----------------------------------
+---Story Logs Service Endpoints---
+----------------------------------
+--CREATE--
+
+--READ--
+GET /storyLogs
+
+GET /storyCurrentLogs
+
+--UPDATE--
+
+--DELETE--

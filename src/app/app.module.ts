@@ -15,7 +15,13 @@ import { UserService } from './login/user.service';
 import { ScrumHomeComponent } from './scrum-home/scrum-home.component';
 import { UserHomeComponent } from './user-home/user-home.component';
 import { TaskComponent } from './task/task.component';
+
+import { HomeComponent } from './home/home.component';
+import { BoardsComponent } from './boards/boards.component';
+import { BoardDetailComponent } from './board-detail/board-detail.component';
+
 import { TaskService } from './task/task.service';
+
 
 
 const routes: Routes = [
@@ -34,7 +40,10 @@ const routes: Routes = [
     RegisterComponent,
     ScrumHomeComponent,
     UserHomeComponent,
-    TaskComponent
+    TaskComponent,
+    HomeComponent,
+    BoardsComponent,
+    BoardDetailComponent
   ],
   imports: [
     BrowserModule,

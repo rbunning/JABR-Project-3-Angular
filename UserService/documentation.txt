@@ -1,0 +1,29 @@
+User Service Endpoints
+
+--CREATE--
+POST /addUserToBoard
+  key: boardId, value: (int Board ID)
+  key: scrumUserId, value: (int User ID)
+No return value
+
+--READ--
+GET /allUsers
+Returns List<ScrumUser>
+
+GET /getBoardsForUser/{userId}
+Returns String (comma separated list of board ids)
+
+GET /getAllUsersOnBoard/{boardId}
+Returns List<ScrumUser>
+
+GET /getAllUsersNotOnBoard/{boardId}
+Returns List<ScrumUser>
+
+POST /login
+  key: scrumUserUsername, value: (String username)
+  key: scrumUserPassword, value: (String password)
+Returns ScrumUser. scrumUserId = 0 if invalid login
+
+--UPDATE--
+
+--DELETE--
