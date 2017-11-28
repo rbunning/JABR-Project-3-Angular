@@ -17,12 +17,14 @@ import { NavbarService } from './navbar/navbar.service';
 
 import { ScrumHomeComponent } from './scrum-home/scrum-home.component';
 import { TaskComponent } from './task/task.component';
+import { CreateStoryComponent } from './create-story/create-story.component';
 
 import { HomeComponent } from './home/home.component';
 import { BoardsComponent } from './boards/boards.component';
 import { BoardDetailComponent } from './board-detail/board-detail.component';
 
 import { TaskService } from './task/task.service';
+import { CreateStoryService } from './create-story/create-story.service';
 
 
 
@@ -31,6 +33,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'task', component: TaskComponent},
   { path: 'scrum-home', redirectTo: 'boards', pathMatch: 'full'},
+  {path: 'add-Story', component: CreateStoryComponent},
   { path: 'boards', component: BoardsComponent}
 ]
 
@@ -44,7 +47,8 @@ const routes: Routes = [
     TaskComponent,
     HomeComponent,
     BoardsComponent,
-    BoardDetailComponent
+    BoardDetailComponent,
+    CreateStoryComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +59,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
 
-  providers: [DatePipe, UserService, BoardsService, NavbarService, TaskService],
+  providers: [DatePipe, UserService, BoardsService, NavbarService, TaskService, CreateStoryService],
 
   bootstrap: [AppComponent]
 })
