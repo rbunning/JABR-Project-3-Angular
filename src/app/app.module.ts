@@ -24,6 +24,8 @@ import { BoardsComponent } from './boards/boards.component';
 import { BoardDetailComponent } from './board-detail/board-detail.component';
 
 import { TaskService } from './task/task.service';
+import { ChartComponent } from './chart/chart.component';
+import { ChartsModule } from 'ng2-charts';
 import { CreateStoryService } from './create-story/create-story.service';
 
 import { AddBoardComponent } from './add-board/add-board.component';
@@ -34,6 +36,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'task', component: TaskComponent},
   { path: 'scrum-home', redirectTo: 'boards', pathMatch: 'full'},
+  { path: 'boards', component: BoardsComponent},
+  { path: 'chart', component: ChartComponent},
   {path: 'add-Story', component: CreateStoryComponent},
   { path: 'boards', component: BoardsComponent},
   { path: 'add-board', component: AddBoardComponent}
@@ -50,6 +54,7 @@ const routes: Routes = [
     HomeComponent,
     BoardsComponent,
     BoardDetailComponent,
+    ChartComponent,
     CreateStoryComponent,
     AddBoardComponent,
     OrderByPipe
@@ -60,6 +65,7 @@ const routes: Routes = [
     FormsModule,
     HttpModule,
     HttpClientModule,
+    ChartsModule,   
     RouterModule.forRoot(routes)
   ],
 
