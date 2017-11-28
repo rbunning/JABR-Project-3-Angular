@@ -22,7 +22,7 @@ export class BoardsService {
                     .map(response => <Board[]> response.json());
   }
 
-  getBoards(scrumUserId: number): Observable<any> {
+  getBoard(scrumUserId: number): Observable<any> {
     const headers = new HttpHeaders({'Content-Type': 'text/plain'});
     console.log("scrumUserId: ", scrumUserId);
     return this.httpClient.post(BoardsService.BOARDS_URL, scrumUserId, {headers: headers});

@@ -18,19 +18,19 @@ export class BoardDetailComponent implements OnInit {
   error: any;
   navigated = false;
 
-  Name = this.boardsComponent.name;
-
-
   constructor(
     private boardsService: BoardsService,
-    private boardsComponent: BoardsComponent,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.Name;
-  }
-
-  save(): void{
-
+    this.route.params.forEach((params: Params) => {
+      const id =  +params['id'];
+      this.navigated = true;
+      this.boardsService.getBoard(id).subscribe(
+        res => {
+          console.log('log currentBoard', res);
+          localStorage.setItem('currentBoard', JSON.stringify(res));
+        })
+    });
   }
 }
