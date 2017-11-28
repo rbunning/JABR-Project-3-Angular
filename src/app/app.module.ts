@@ -24,8 +24,7 @@ import { BoardDetailComponent } from './board-detail/board-detail.component';
 
 import { TaskService } from './task/task.service';
 import { AddBoardComponent } from './add-board/add-board.component';
-
-
+import { OrderByPipe } from './boards/order-by.pipe';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -47,7 +46,8 @@ const routes: Routes = [
     HomeComponent,
     BoardsComponent,
     BoardDetailComponent,
-    AddBoardComponent
+    AddBoardComponent,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,

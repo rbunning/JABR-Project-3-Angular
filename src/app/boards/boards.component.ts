@@ -9,7 +9,7 @@ import { BoardDetailComponent } from '../board-detail/board-detail.component';
 import { NewBoard } from './newBoard.interface';
 
 import { Pipe, PipeTransform } from '@angular/core';
-import { OrderBy } from './OrderBy.interface';
+import { OrderByPipe } from './order-by.pipe';
 @Component({
   selector: 'app-boards',
   templateUrl: './boards.component.html',

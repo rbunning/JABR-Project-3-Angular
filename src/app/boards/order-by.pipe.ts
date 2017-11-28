@@ -1,10 +1,9 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-    name: 'orderBy'
+  name: 'orderBy'
 })
-export class OrderBy{
-
+export class OrderByPipe implements PipeTransform {
  transform(array, orderBy, asc = true){
 
      if (!orderBy || orderBy.trim() == ""){
@@ -23,10 +22,9 @@ export class OrderBy{
          return this.orderByComparator(item2[orderBy], item1[orderBy]);
        });
      }
-
  }
 
- orderByComparator(a:any, b:any):number{
+ orderByComparator(a:any, b:any): number{
 
      if((isNaN(parseFloat(a)) || !isFinite(a)) || (isNaN(parseFloat(b)) || !isFinite(b))){
        //Isn't a number so lowercase the string to properly compare
