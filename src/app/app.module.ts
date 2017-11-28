@@ -25,12 +25,14 @@ import { BoardDetailComponent } from './board-detail/board-detail.component';
 import { TaskService } from './task/task.service';
 import { AddBoardComponent } from './add-board/add-board.component';
 import { OrderByPipe } from './boards/order-by.pipe';
+import { SwimlaneComponent } from './swimlane/swimlane.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent },
   { path: 'task', component: TaskComponent},
   { path: 'scrum-home', redirectTo: 'boards', pathMatch: 'full'},
+  { path: 'home', redirectTo: 'boards', pathMatch: 'full'},
   { path: 'boards', component: BoardsComponent},
   { path: 'add-board', component: AddBoardComponent},
   { path: 'detail/:id', component: BoardDetailComponent}
@@ -48,7 +50,8 @@ const routes: Routes = [
     BoardsComponent,
     BoardDetailComponent,
     AddBoardComponent,
-    OrderByPipe
+    OrderByPipe,
+    SwimlaneComponent
   ],
   imports: [
     BrowserModule,

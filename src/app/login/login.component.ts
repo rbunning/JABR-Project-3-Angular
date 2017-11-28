@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     this.userService.loginUser(this.user).subscribe(
       res => {
         console.log('Login successful -POST ', res);
-        this.router.navigateByUrl('/scrum-home');
+        this.router.navigateByUrl('/home');
         localStorage.setItem('currentUser', JSON.stringify(res));
     });
   }
