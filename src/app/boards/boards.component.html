@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+<h2>
+  Boards:
+</h2>
+
+<ul class="boards">
+  <li *ngFor="let board of boards" (click)="onSelect(board)" [class.selected]="board === selectedBoard">
+    <span class="board-element">
+      <span class="badge">{{board.boardId}}</span>{{board.boardName}}
+    </span>
+  </li>
+</ul>
+
+
+<div class="col-md-6" >
+    <div class="form-group">
+      <label for ="description">Add a New Board</label>
+      <textarea [(ngModel)]="newBoard.boardName" class="form-control" id="description" placeholder="Enter Board Name Here"></textarea>
+    </div>
+    <div>
+      <button type="button" class="btn btn-default submit"><i class="fa fa-paper-plane" aria-hidden="true" (click)="addBoard()"></i>Add</button>
+    </div>
+</div>
+
+
