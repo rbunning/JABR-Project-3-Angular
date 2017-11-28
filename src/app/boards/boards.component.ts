@@ -8,6 +8,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { BoardDetailComponent } from '../board-detail/board-detail.component';
 import { NewBoard } from './newBoard.interface';
 
+import { OrderBy } from './OrderBy.interface';
 @Component({
   selector: 'app-boards',
   templateUrl: './boards.component.html',
@@ -16,6 +17,9 @@ import { NewBoard } from './newBoard.interface';
 export class BoardsComponent implements OnInit {
 
   boards: Board[];
+
+  order = "boardId";
+  ascending = true;
 
   newBoard: NewBoard = {
     boardName:''

@@ -4,6 +4,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { Board } from '../boards/board.interface';
 import { BoardsService } from '../boards/boards.service';
+import { NewBoard } from '../boards/newBoard.interface';
+
 @Component({
   selector: 'app-board-detail',
   templateUrl: './board-detail.component.html',
