@@ -62,10 +62,16 @@ export class BoardsComponent implements OnInit {
   }
 
   addBoard(): void {
-    this.boardsService.addBoard(this.newBoard).subscribe(
-      res => {
-        console.log("This is for testing: ", res);
-      })
+
+    if(this.newBoard.boardName == '') {
+      console.error("You must have a name for board")
+      window.alert("Board Name cannot be empty");
+    } else {
+        this.boardsService.addBoard(this.newBoard).subscribe(
+          res => {
+            console.log("This is for testing: ", res);
+          })
+      }
   }
 }
 
