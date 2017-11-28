@@ -6,6 +6,7 @@ import { Board } from './board.interface';
 import { NewBoard } from './newBoard.interface';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+
 @Injectable()
 export class BoardsService {
   private static readonly BOARDS_URL = '/board-manager-service/getBoards';

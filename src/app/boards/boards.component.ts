@@ -8,14 +8,20 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { BoardDetailComponent } from '../board-detail/board-detail.component';
 import { NewBoard } from './newBoard.interface';
 
+import { Pipe, PipeTransform } from '@angular/core';
+import { OrderByPipe } from './order-by.pipe';
 @Component({
   selector: 'app-boards',
   templateUrl: './boards.component.html',
   styleUrls: ['./boards.component.css']
 })
+
 export class BoardsComponent implements OnInit {
 
   boards: Board[];
+
+  order = "boardId";
+  ascending = true;
 
   newBoard: NewBoard = {
     boardName:''
@@ -62,10 +68,18 @@ export class BoardsComponent implements OnInit {
   }
 
   addBoard(): void {
-    this.boardsService.addBoard(this.newBoard).subscribe(
-      res => {
-        console.log("This is for testing: ", res);
-      })
+
+    if(this.newBoard.boardName == '') {
+      console.error("You must have a name for board")
+      window.alert("Board Name cannot be empty");
+    } else {
+        this.boardsService.addBoard(this.newBoard).subscribe(
+          res => {
+            console.log("This is for testing: ", res);
+          })
+      }
   }
+
+
 }
 
