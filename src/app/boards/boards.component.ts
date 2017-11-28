@@ -8,12 +8,14 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { BoardDetailComponent } from '../board-detail/board-detail.component';
 import { NewBoard } from './newBoard.interface';
 
+import { Pipe, PipeTransform } from '@angular/core';
 import { OrderBy } from './OrderBy.interface';
 @Component({
   selector: 'app-boards',
   templateUrl: './boards.component.html',
   styleUrls: ['./boards.component.css']
 })
+
 export class BoardsComponent implements OnInit {
 
   boards: Board[];
@@ -77,5 +79,7 @@ export class BoardsComponent implements OnInit {
           })
       }
   }
+
+
 }
 
