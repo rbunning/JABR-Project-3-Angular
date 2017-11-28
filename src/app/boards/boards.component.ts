@@ -28,8 +28,9 @@ export class BoardsComponent implements OnInit {
   }
 
   selectedBoard: Board;
+  id: number;
+  name: string;
   error: any;
-  showNgFor = false;
 
   constructor(
     private router: Router,
@@ -45,15 +46,6 @@ export class BoardsComponent implements OnInit {
 
   roleId = JSON.parse(localStorage.getItem('currentUser')).roleType.roleId;
 
-  // displayAllBoards() {
-  //   this.boardsService.getBoards(this.scrumUserId).subscribe(
-  //     res => {
-  //       this.boards = res;
-  //       console.log("This is somethign for board ", this.boards);
-  //       localStorage.setItem('currentBoards', JSON.stringify(res));
-  //     })
-  // }
-
   displayAllBoards() {
     this.boardsService.getAllBoards().subscribe(
       res => {
@@ -63,8 +55,16 @@ export class BoardsComponent implements OnInit {
       })
   }
 
-  onSelect(board: Board): void {
+  onSelect(board: Board, num: number, str: string): void {
+    console.log("This board: ", board);
     this.selectedBoard = board;
+    this.id = num;
+    this.name = str;
+    this.gotoDetail();
+  }
+
+  gotoDetail() {
+    this.router.navigate(['/detail', this.id]);
   }
 
   addBoard(): void {
@@ -79,7 +79,5 @@ export class BoardsComponent implements OnInit {
           })
       }
   }
-
-
 }
 

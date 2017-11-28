@@ -4,13 +4,10 @@
 </h2>
 
 <ul class="boards">
-  <li *ngFor="let board of boards | orderBy:['boardId', 'boardName']" (click)="onSelect(board)" [class.selected]="board === selectedBoard">
+  <li *ngFor="let board of boards | orderBy:['boardId', 'boardName']" (click)="onSelect(board, board.boardId, board.boardName)" [class.selected]="board === selectedBoard">
     <span class="board-element">
       <span class="badge">{{board.boardId}}</span>
       {{board.boardName}}
     </span>
   </li>
 </ul>
-
-
-

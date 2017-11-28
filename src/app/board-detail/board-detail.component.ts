@@ -5,6 +5,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { Board } from '../boards/board.interface';
 import { BoardsService } from '../boards/boards.service';
 import { NewBoard } from '../boards/newBoard.interface';
+import { BoardsComponent } from '../boards/boards.component';
 
 @Component({
   selector: 'app-board-detail',
@@ -17,11 +18,16 @@ export class BoardDetailComponent implements OnInit {
   error: any;
   navigated = false;
 
+  Name = this.boardsComponent.name;
+
+
   constructor(
     private boardsService: BoardsService,
+    private boardsComponent: BoardsComponent,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.Name;
   }
 
   save(): void{

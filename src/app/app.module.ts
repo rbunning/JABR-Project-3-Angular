@@ -32,7 +32,8 @@ const routes: Routes = [
   { path: 'task', component: TaskComponent},
   { path: 'scrum-home', redirectTo: 'boards', pathMatch: 'full'},
   { path: 'boards', component: BoardsComponent},
-  { path: 'add-board', component: AddBoardComponent}
+  { path: 'add-board', component: AddBoardComponent},
+  { path: 'detail/:id', component: BoardDetailComponent}
 ]
 
 @NgModule({
@@ -58,7 +59,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
 
-  providers: [DatePipe, UserService, BoardsService, NavbarService, TaskService],
+  providers: [DatePipe, UserService, BoardsService, NavbarService, TaskService, BoardsComponent],
 
   bootstrap: [AppComponent]
 })

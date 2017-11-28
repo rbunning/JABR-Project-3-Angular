@@ -12,8 +12,6 @@ export class BoardsService {
   private static readonly BOARDS_URL = '/board-manager-service/getBoards';
   private static readonly ADD_BOARD_URL = '/board-manager-service/newBoard';
   private GET_ALL_BOARDS = '/board-manager-service/getAllBoards';
-  // private headers = new HttpHeaders({'Content-Type': 'text/plain'});
-  // private headers1 = new HttpHeaders('Content-Type': 'application/json');
 
   constructor(
     private http: Http,
