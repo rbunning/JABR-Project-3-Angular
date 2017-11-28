@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { BoardsService } from './boards.service';
 import { Board } from './board.interface';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { BoardDetailComponent } from '../board-detail/board-detail.component';
+import { NewBoard } from './newBoard.interface';
 
 @Component({
   selector: 'app-boards',
@@ -14,7 +16,14 @@ import { NavbarComponent } from '../navbar/navbar.component';
 export class BoardsComponent implements OnInit {
 
   boards: Board[];
+
+  newBoard: NewBoard = {
+    boardName:''
+  }
+
   selectedBoard: Board;
+  error: any;
+  showNgFor = false;
 
   constructor(
     private router: Router,
@@ -30,8 +39,17 @@ export class BoardsComponent implements OnInit {
 
   roleId = JSON.parse(localStorage.getItem('currentUser')).roleType.roleId;
 
+  // displayAllBoards() {
+  //   this.boardsService.getBoards(this.scrumUserId).subscribe(
+  //     res => {
+  //       this.boards = res;
+  //       console.log("This is somethign for board ", this.boards);
+  //       localStorage.setItem('currentBoards', JSON.stringify(res));
+  //     })
+  // }
+
   displayAllBoards() {
-    this.boardsService.getBoards(this.scrumUserId).subscribe(
+    this.boardsService.getAllBoards().subscribe(
       res => {
         this.boards = res;
         console.log("This is somethign for board ", this.boards);
@@ -41,6 +59,13 @@ export class BoardsComponent implements OnInit {
 
   onSelect(board: Board): void {
     this.selectedBoard = board;
+  }
+
+  addBoard(): void {
+    this.boardsService.addBoard(this.newBoard).subscribe(
+      res => {
+        console.log("This is for testing: ", res);
+      })
   }
 }
 
