@@ -53,6 +53,7 @@ export class BoardsComponent implements OnInit {
         console.log("This is somethign for board ", this.boards);
         localStorage.setItem('currentBoards', JSON.stringify(res));
       })
+    console.log("Hello id", this.scrumUserId);
   }
 
   onSelect(board: Board, num: number, str: string): void {

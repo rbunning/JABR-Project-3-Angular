@@ -32,5 +32,7 @@ export class BoardDetailComponent implements OnInit {
           localStorage.setItem('currentBoard', JSON.stringify(res));
         })
     });
+
   }
+  Name = JSON.parse(localStorage.getItem('currentBoard')).boardName;
 }
