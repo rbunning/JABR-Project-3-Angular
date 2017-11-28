@@ -23,15 +23,16 @@ import { BoardsComponent } from './boards/boards.component';
 import { BoardDetailComponent } from './board-detail/board-detail.component';
 
 import { TaskService } from './task/task.service';
-
-
+import { AddBoardComponent } from './add-board/add-board.component';
+import { OrderByPipe } from './boards/order-by.pipe';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent },
   { path: 'task', component: TaskComponent},
   { path: 'scrum-home', redirectTo: 'boards', pathMatch: 'full'},
-  { path: 'boards', component: BoardsComponent}
+  { path: 'boards', component: BoardsComponent},
+  { path: 'add-board', component: AddBoardComponent}
 ]
 
 @NgModule({
@@ -44,7 +45,9 @@ const routes: Routes = [
     TaskComponent,
     HomeComponent,
     BoardsComponent,
-    BoardDetailComponent
+    BoardDetailComponent,
+    AddBoardComponent,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,
