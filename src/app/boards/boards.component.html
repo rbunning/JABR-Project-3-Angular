@@ -6,7 +6,8 @@
 <ul class="boards">
   <li *ngFor="let board of boards" (click)="onSelect(board)" [class.selected]="board === selectedBoard">
     <span class="board-element">
-      <span class="badge">{{board.boardId}}</span>{{board.boardName}}
+      <span class="badge">{{board.boardId}}</span>
+      <span>{{board.boardName}}</span>
     </span>
   </li>
 </ul>
