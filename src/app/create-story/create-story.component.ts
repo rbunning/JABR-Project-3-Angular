@@ -11,11 +11,11 @@ import { Router } from '@angular/router';
 export class CreateStoryComponent implements OnInit {
 
   story: CreateStory = {
-    storyId:   null, // need to be change so that it rights to a certain board
+    storyId:   null, 
     storyDesc:  '',
     storyName: '',
     storyPoints: null,
-    board: 1
+    board: 1 // need to be change so that it get the current boards id
   }
 
   constructor(
@@ -29,7 +29,7 @@ export class CreateStoryComponent implements OnInit {
   storySubmit() {
     this.storyService.createNewStory(this.story).subscribe(
       res => {
-        console.log(res);
+        this.router.navigateByUrl('/boards');
       }
     );
   }
