@@ -42,13 +42,13 @@ const routes: Routes = [
   { path: 'boards', component: BoardsComponent},
 
   { path: 'add-board', component: AddBoardComponent},
-  { path: 'detail/:id', component: BoardDetailComponent}
+  { path: 'detail/:id', component: BoardDetailComponent},
 
   { path: 'chart', component: ChartComponent},
-  {path: 'add-Story', component: CreateStoryComponent},
+  { path: 'add-Story', component: CreateStoryComponent},
   { path: 'boards', component: BoardsComponent},
   { path: 'add-board', component: AddBoardComponent}
-
+]
 
 @NgModule({
   declarations: [
@@ -73,7 +73,7 @@ const routes: Routes = [
     FormsModule,
     HttpModule,
     HttpClientModule,
-    ChartsModule,   
+    ChartsModule,
     RouterModule.forRoot(routes)
   ],
 
