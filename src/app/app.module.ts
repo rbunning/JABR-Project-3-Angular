@@ -48,7 +48,7 @@ const routes: Routes = [
   { path: 'add-Story', component: CreateStoryComponent},
   { path: 'boards', component: BoardsComponent},
   { path: 'add-board', component: AddBoardComponent}
-
+]
 
 @NgModule({
   declarations: [
