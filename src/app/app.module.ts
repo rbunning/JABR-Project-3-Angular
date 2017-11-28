@@ -17,6 +17,7 @@ import { NavbarService } from './navbar/navbar.service';
 
 import { ScrumHomeComponent } from './scrum-home/scrum-home.component';
 import { TaskComponent } from './task/task.component';
+import { CreateStoryComponent } from './create-story/create-story.component';
 
 import { HomeComponent } from './home/home.component';
 import { BoardsComponent } from './boards/boards.component';
@@ -25,8 +26,10 @@ import { BoardDetailComponent } from './board-detail/board-detail.component';
 import { TaskService } from './task/task.service';
 import { ChartComponent } from './chart/chart.component';
 import { ChartsModule } from 'ng2-charts';
+import { CreateStoryService } from './create-story/create-story.service';
 
-
+import { AddBoardComponent } from './add-board/add-board.component';
+import { OrderByPipe } from './boards/order-by.pipe';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -34,7 +37,10 @@ const routes: Routes = [
   { path: 'task', component: TaskComponent},
   { path: 'scrum-home', redirectTo: 'boards', pathMatch: 'full'},
   { path: 'boards', component: BoardsComponent},
-  { path: 'chart', component: ChartComponent}
+  { path: 'chart', component: ChartComponent},
+  {path: 'add-Story', component: CreateStoryComponent},
+  { path: 'boards', component: BoardsComponent},
+  { path: 'add-board', component: AddBoardComponent}
 ]
 
 @NgModule({
@@ -48,7 +54,10 @@ const routes: Routes = [
     HomeComponent,
     BoardsComponent,
     BoardDetailComponent,
-    ChartComponent
+    ChartComponent,
+    CreateStoryComponent,
+    AddBoardComponent,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,
@@ -60,7 +69,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
 
-  providers: [DatePipe, UserService, BoardsService, NavbarService, TaskService],
+  providers: [DatePipe, UserService, BoardsService, NavbarService, TaskService, CreateStoryService],
 
   bootstrap: [AppComponent]
 })
