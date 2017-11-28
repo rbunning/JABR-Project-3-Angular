@@ -26,6 +26,7 @@ import { TaskService } from './task/task.service';
 import { AddBoardComponent } from './add-board/add-board.component';
 import { OrderByPipe } from './boards/order-by.pipe';
 import { SwimlaneComponent } from './swimlane/swimlane.component';
+import { SwimlaneService } from './swimlane/swimlane.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -62,7 +63,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
 
-  providers: [DatePipe, UserService, BoardsService, NavbarService, TaskService, BoardsComponent],
+  providers: [DatePipe, UserService, BoardsService, SwimlaneService, NavbarService, TaskService, BoardsComponent],
 
   bootstrap: [AppComponent]
 })
