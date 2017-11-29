@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CreateStory} from './create-story.interface';
 import {CreateStoryService} from './create-story.service';
 import { Router } from '@angular/router';
+import { SwimlaneService } from '../swimlane/swimlane.service';
 
 @Component({
   selector: 'app-create-story',
@@ -10,17 +11,22 @@ import { Router } from '@angular/router';
 })
 export class CreateStoryComponent implements OnInit {
 
+  private currentBoard= JSON.parse(localStorage.getItem('currentBoardForLanes'));
+  currentBoardId = this.currentBoard[0].boardId;
+
   story: CreateStory = {
-    storyId:   null, 
+    storyId:   null,
     storyDesc:  '',
     storyName: '',
     storyPoints: null,
-    board: 1 // need to be change so that it get the current boards id
+    // board: 1 // need to be change so that it get the current boards id
+    board: this.currentBoardId
   }
 
   constructor(
     private storyService: CreateStoryService,
-    private router: Router
+    private router: Router,
+    private swimlaneService: SwimlaneService
   ) {}
 
   ngOnInit() {
@@ -29,7 +35,8 @@ export class CreateStoryComponent implements OnInit {
   storySubmit() {
     this.storyService.createNewStory(this.story).subscribe(
       res => {
-        this.router.navigateByUrl('/boards');
+        // this.router.navigateByUrl('/boards');
+        this.router.navigate(['/detail'], this.currentBoardId);
       }
     );
   }

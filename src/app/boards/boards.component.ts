@@ -40,8 +40,6 @@ export class BoardsComponent implements OnInit {
     this.displayAllBoards();
   }
 
-  //use this syntax to fetch the specific variable you need
-  // var scrumUserId = JSON.parse(localStorage.getItem('currentUser')).scrumUserId;
   scrumUserId = JSON.parse(localStorage.getItem("currentUser")).scrumUserId;
 
   roleId = JSON.parse(localStorage.getItem('currentUser')).roleType.roleId;

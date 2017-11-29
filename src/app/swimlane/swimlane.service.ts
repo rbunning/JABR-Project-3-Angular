@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class SwimlaneService {
 
-  private GET_ALL_STORIES = "/allboardStories/";
+  private GET_ALL_STORIES = "/story-manager-service/allboardStories/";
 
   getAllStories(boardId: number) {
     return this.http.get(this.GET_ALL_STORIES + boardId)
