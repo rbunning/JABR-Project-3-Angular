@@ -22,13 +22,18 @@ var boards_service_1 = require("./boards/boards.service");
 var navbar_service_1 = require("./navbar/navbar.service");
 var scrum_home_component_1 = require("./scrum-home/scrum-home.component");
 var task_component_1 = require("./task/task.component");
+var create_story_component_1 = require("./create-story/create-story.component");
 var home_component_1 = require("./home/home.component");
 var boards_component_1 = require("./boards/boards.component");
 var board_detail_component_1 = require("./board-detail/board-detail.component");
 var task_service_1 = require("./task/task.service");
+var chart_component_1 = require("./chart/chart.component");
+var ng2_charts_1 = require("ng2-charts");
+var create_story_service_1 = require("./create-story/create-story.service");
 var add_board_component_1 = require("./add-board/add-board.component");
 var order_by_pipe_1 = require("./boards/order-by.pipe");
 var swimlane_component_1 = require("./swimlane/swimlane.component");
+var swimlane_service_1 = require("./swimlane/swimlane.service");
 var routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: login_component_1.LoginComponent },
@@ -37,7 +42,11 @@ var routes = [
     { path: 'home', redirectTo: 'boards', pathMatch: 'full' },
     { path: 'boards', component: boards_component_1.BoardsComponent },
     { path: 'add-board', component: add_board_component_1.AddBoardComponent },
-    { path: 'detail/:id', component: board_detail_component_1.BoardDetailComponent }
+    { path: 'detail/:id', component: board_detail_component_1.BoardDetailComponent },
+    { path: 'chart', component: chart_component_1.ChartComponent },
+    { path: 'add-story', component: create_story_component_1.CreateStoryComponent },
+    { path: 'boards', component: boards_component_1.BoardsComponent },
+    { path: 'add-board', component: add_board_component_1.AddBoardComponent }
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -54,6 +63,8 @@ var AppModule = /** @class */ (function () {
                 home_component_1.HomeComponent,
                 boards_component_1.BoardsComponent,
                 board_detail_component_1.BoardDetailComponent,
+                chart_component_1.ChartComponent,
+                create_story_component_1.CreateStoryComponent,
                 add_board_component_1.AddBoardComponent,
                 order_by_pipe_1.OrderByPipe,
                 swimlane_component_1.SwimlaneComponent
@@ -64,9 +75,10 @@ var AppModule = /** @class */ (function () {
                 forms_1.FormsModule,
                 http_2.HttpModule,
                 http_1.HttpClientModule,
+                ng2_charts_1.ChartsModule,
                 router_1.RouterModule.forRoot(routes)
             ],
-            providers: [common_1.DatePipe, user_service_1.UserService, boards_service_1.BoardsService, navbar_service_1.NavbarService, task_service_1.TaskService, boards_component_1.BoardsComponent],
+            providers: [common_1.DatePipe, user_service_1.UserService, boards_service_1.BoardsService, swimlane_service_1.SwimlaneService, navbar_service_1.NavbarService, task_service_1.TaskService, create_story_service_1.CreateStoryService],
             bootstrap: [app_component_1.AppComponent]
         })
     ], AppModule);

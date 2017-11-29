@@ -30,13 +30,14 @@ export class CreateStoryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log("Story->boardId ", this.currentBoardId);
   }
 
   storySubmit() {
     this.storyService.createNewStory(this.story).subscribe(
       res => {
         // this.router.navigateByUrl('/boards');
-        this.router.navigate(['/detail'], this.currentBoardId);
+      //   this.router.navigate(['/detail'], this.currentBoardId);
       }
     );
   }

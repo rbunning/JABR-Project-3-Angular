@@ -1,3 +1,7 @@
+#usernameLabel,#boardName, #passwordLabel, #submitLabel, #msgLabel, #navbarContent, #boardName{
+  font-family: 'Dosis', sans-serif;
+}
+
 #taskInput{
   text-decoration-color: transparent;
 }

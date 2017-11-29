@@ -1,12 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { SwimlaneService } from './swimlane.service';
 import { Story } from './story.interface';
+
+import { CreateStoryService }  from '../create-story/create-story.service';
+import { MoveStory } from './move-story.interface';
+
 import { ChartComponent } from '../chart/chart.component';
 import { ChartService } from '../chart/chart.service';
 import { TaskService } from '../task/task.service';
 import { Task } from '../task/task.interface';
+
 
 @Component({
   selector: 'app-swimlane',
@@ -20,15 +25,6 @@ export class SwimlaneComponent implements OnInit {
   currentBoardId = this.currentBoard[0].boardId;
   currentBoardName = this.currentBoard[0].boardName;
 
-  // lanes = [
-  //   "Backlog",
-  //   "To Do",
-  //   "In Progress",
-  //   "Test",
-  //   "Verify",
-  //   "Done"
-  // ]
-
   lanes = [
     { laneType: "Backlog", laneId: 1 },
     { laneType: "To Do", laneId: 2 },
@@ -37,6 +33,11 @@ export class SwimlaneComponent implements OnInit {
     { laneType: "Verify", laneId: 5 },
     { laneType: "Done", laneId: 6 },
   ]
+
+  story: MoveStory ={
+    storyId: null,
+    laneTypeId: null
+  }
 
 
   stories: Story[];
@@ -47,14 +48,21 @@ export class SwimlaneComponent implements OnInit {
   }
 
   constructor(
+    private zone: NgZone,
+    private router: Router,
     private swimlaneService: SwimlaneService,
+    private createStoryService: CreateStoryService,
+
     private chartService: ChartService,
     private taskService: TaskService,
-    private router: Router
     ) { }
 
   ngOnInit() {
     this.displayAllStories();
+  }
+
+  addStory(): void {
+    this.router.navigateByUrl("/add-story");
   }
 
   displayAllStories(): void {
@@ -65,6 +73,25 @@ export class SwimlaneComponent implements OnInit {
         localStorage.setItem('curentStories', JSON.stringify(res));
       })
   }
+
+
+  switchLane(s: Story, id: number, index: number): void {
+    console.log("index: ", index);
+    console.log("story: ", s);
+    console.log("story id ",id);
+    this.story.storyId = id;
+    this.story.laneTypeId = index + 1;
+
+    console.log(this.story.storyId);
+    console.log(this.story.laneTypeId);
+
+    this.swimlaneService.moveStoryLane(this.story).subscribe(
+      res => {
+        this.zone.run(() => {
+          console.log("Swimlane has changed ");
+          // this.router.navigate(['/detail', this.currentBoardId]);
+          this.displayAllStories();
+        });
 
   getChartSubmit() {
     console.log("current board id: " + this.currentBoardId);
@@ -85,6 +112,7 @@ export class SwimlaneComponent implements OnInit {
     this.taskService.createTask(this.task).subscribe(
       res => {
           console.log("Create Task Success!", res);
+
       });
   }
 }
