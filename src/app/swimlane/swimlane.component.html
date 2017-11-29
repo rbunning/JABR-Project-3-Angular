@@ -4,48 +4,58 @@
     </h2>
   </div>
 
-  <button style="float: right;" type="button" class="btn btn-primary">Add a Story</button>&nbsp;
-  <button style="float: right;" type="button" class="btn btn-primary">Add User</button>&nbsp;
+  <button style="float: right;" type="button" class="btn btn-primary">Add a Story</button>&nbsp;&nbsp;
+  <button style="float: right;" type="button" class="btn btn-primary">Add User</button>&nbsp;&nbsp;
   <button style="float: right;" type="button" class="btn btn-primary">View Chart</button>
   <br> <br>
-
-<!--   <div class="lanes">
-    <div *ngFor="let lane of lanes" class="col-xs-2">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">{{lane}}</h3>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
-  <!-- Story level -->
-<div class="lanes row">
-    <div *ngFor="let lane of lanes" class="col-xs-2">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">{{lane}}</h3>
-        </div>
-
-        <div class="panel-body">
-          <div style="border-top: solid">
-            <a style="float: left"> <span
-              class="glyphicon glyphicon-triangle-left"></span>
-            </a> <span class="label label-default">Points </span>
-
-            <a style="float: right"> <span
-              class="glyphicon glyphicon-triangle-right"></span>
-            </a> <br /> <span></span>
-
-            <div class="checkbox">
-              <label> <input type="checkbox">
-              </label>
-            </div>
-
-            <input id="textboxId" type="text" placeholder="New Task">
-                <button class="btn btn-default">Add NewTask</button>
-          </div>
-        </div>
-      </div>
-    </div>
 </div>
+
+<div class="grid grid-pad" style="width:1800px;height:500px;overflow:auto">
+  <!-- start of lane display -->
+  <div *ngFor="let lane of lanes; index as i" id="rcorners1" class="col-1-4">
+    <div class="story" style="background:#f0f8ff">
+      <div class="story-block">
+        <table>
+          <br>
+          <div>
+            <div class="module lane">
+              <th class="text-center">
+                <div>
+                  <h6 class="text-center">{{lane.laneType}}</h6>
+                </div>
+              </th>
+              <ng-container *ngFor="let story of stories" class="col-1-4">
+                <div *ngIf="story.laneTypeId == lane.laneId" >
+                  <!-- <div class="module story"> -->
+                  <tr>
+                    <td *ngIf="i > 0">
+                      <button style="float: left" type="button" class="btn-sm btn-info" (click)="switchLane(story, i-1)">
+                        <</button>
+                    </td>
+                    <td>
+                      <div id="userStories" class="story">
+                        <div (click)="displayTasks(story.storyId)" class="story-block">
+                          <h6 class="text-center" data-toggle="modal" data-target=".story-modal-sm">Points: {{story.storyPoints}} {{story.storyName}}</h6>
+                          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                        </div>
+                        <div>
+                          <p>{{story.storyDesc}}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <button style="float: right" type="button" class="btn-sm btn-info" (click)="switchLane(story,i+1)">></button>
+                    </td>
+                  </tr>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
