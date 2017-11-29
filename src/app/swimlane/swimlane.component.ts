@@ -15,14 +15,25 @@ export class SwimlaneComponent implements OnInit {
   currentBoardId = this.currentBoard[0].boardId;
   currentBoardName = this.currentBoard[0].boardName;
 
+  // lanes = [
+  //   "Backlog",
+  //   "To Do",
+  //   "In Progress",
+  //   "Test",
+  //   "Verify",
+  //   "Done"
+  // ]
+
   lanes = [
-    "Backlog",
-    "To Do",
-    "In Progress",
-    "Test",
-    "Verify",
-    "Done"
+    { laneType: "Backlog", laneId: 1 },
+    { laneType: "To Do", laneId: 2 },
+    { laneType: "In Progress", laneId: 3 },
+    { laneType: "Test", laneId: 4 },
+    { laneType: "Verify", laneId: 5 },
+    { laneType: "Done", laneId: 6 },
   ]
+
+
   stories: Story[];
 
   constructor(

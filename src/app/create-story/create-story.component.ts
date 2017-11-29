@@ -10,12 +10,16 @@ import { Router } from '@angular/router';
 })
 export class CreateStoryComponent implements OnInit {
 
+  private currentBoard= JSON.parse(localStorage.getItem('currentBoardForLanes'));
+  currentBoardId = this.currentBoard[0].boardId;
+
   story: CreateStory = {
-    storyId:   null, 
+    storyId:   null,
     storyDesc:  '',
     storyName: '',
     storyPoints: null,
-    board: 1 // need to be change so that it get the current boards id
+    // board: 1 // need to be change so that it get the current boards id
+    board: this.currentBoardId;
   }
 
   constructor(
