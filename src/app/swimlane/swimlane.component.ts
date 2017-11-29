@@ -92,6 +92,8 @@ export class SwimlaneComponent implements OnInit {
           // this.router.navigate(['/detail', this.currentBoardId]);
           this.displayAllStories();
         });
+      });
+  }
 
   getChartSubmit() {
     console.log("current board id: " + this.currentBoardId);
