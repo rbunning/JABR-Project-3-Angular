@@ -65,6 +65,8 @@ export class BoardsComponent implements OnInit {
 
   onSelect(board: Board): void {
     this.selectedBoard = board;
+    console.log("current board: " + JSON.stringify(board));
+    localStorage.setItem('currentBoard', JSON.stringify(board));
   }
 
   addBoard(): void {
@@ -80,6 +82,6 @@ export class BoardsComponent implements OnInit {
       }
   }
 
-
+ 
 }
 

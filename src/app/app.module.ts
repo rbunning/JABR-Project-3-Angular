@@ -14,6 +14,7 @@ import { RegisterComponent } from './register/register.component';
 import { UserService } from './login/user.service';
 import { BoardsService } from './boards/boards.service';
 import { NavbarService } from './navbar/navbar.service';
+import { ChartService } from './chart/chart.service';
 
 import { ScrumHomeComponent } from './scrum-home/scrum-home.component';
 import { TaskComponent } from './task/task.component';
@@ -69,7 +70,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
 
-  providers: [DatePipe, UserService, BoardsService, NavbarService, TaskService, CreateStoryService],
+  providers: [DatePipe, UserService, BoardsService, NavbarService, TaskService, CreateStoryService, ChartService],
 
   bootstrap: [AppComponent]
 })
