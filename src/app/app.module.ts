@@ -45,7 +45,7 @@ const routes: Routes = [
   { path: 'detail/:id', component: BoardDetailComponent},
 
   { path: 'chart', component: ChartComponent},
-  { path: 'add-Story', component: CreateStoryComponent},
+  { path: 'add-story', component: CreateStoryComponent},
   { path: 'boards', component: BoardsComponent},
   { path: 'add-board', component: AddBoardComponent}
 ]

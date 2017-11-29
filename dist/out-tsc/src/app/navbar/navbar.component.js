@@ -10,11 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var navbar_service_1 = require("./navbar.service");
 var NavbarComponent = /** @class */ (function () {
-    function NavbarComponent() {
+    function NavbarComponent(navbarService) {
+        this.navbarService = navbarService;
         this.roleId = JSON.parse(localStorage.getItem('currentUser')).roleType.roleId;
     }
     NavbarComponent.prototype.ngOnInit = function () {
+        if (this.roleId != 2) {
+            this.navbarService.hide();
+        }
+        else {
+            this.navbarService.show();
+        }
     };
     NavbarComponent = __decorate([
         core_1.Component({
@@ -22,7 +30,7 @@ var NavbarComponent = /** @class */ (function () {
             templateUrl: './navbar.component.html',
             styleUrls: ['./navbar.component.css']
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [navbar_service_1.NavbarService])
     ], NavbarComponent);
     return NavbarComponent;
 }());

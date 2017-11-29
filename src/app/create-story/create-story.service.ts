@@ -7,6 +7,7 @@ import { CreateStory } from './create-story.interface';
 export class CreateStoryService {
     private static readonly ADD_STORY_URL = '/story-manager-service/addStory';
 
+
     private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
     constructor(private http: HttpClient){}
@@ -14,4 +15,5 @@ export class CreateStoryService {
     createNewStory(story: CreateStory): Observable<any> {
         return this.http.post(CreateStoryService.ADD_STORY_URL, story, {headers: this.headers});
     }
+
 }
