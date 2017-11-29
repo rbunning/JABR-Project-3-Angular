@@ -15,12 +15,10 @@ export class CreateStoryComponent implements OnInit {
   currentBoardId = this.currentBoard[0].boardId;
 
   story: CreateStory = {
-    storyId:   null,
-    storyDesc:  '',
+    boardId: this.currentBoardId,
     storyName: '',
     storyPoints: null,
-    // board: 1 // need to be change so that it get the current boards id
-    board: this.currentBoardId
+    storyDesc: ''
   }
 
   constructor(
@@ -37,7 +35,7 @@ export class CreateStoryComponent implements OnInit {
     this.storyService.createNewStory(this.story).subscribe(
       res => {
         // this.router.navigateByUrl('/boards');
-      //   this.router.navigate(['/detail'], this.currentBoardId);
+        this.router.navigate(['/detail', this.currentBoardId]);
       }
     );
   }

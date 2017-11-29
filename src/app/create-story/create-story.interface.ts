@@ -1,7 +1,6 @@
 export interface CreateStory {
-    storyId:   number;
-    storyDesc:  string;
+    boardId: number;
     storyName: string;
     storyPoints: number;
-    board: number;
-  }
+    storyDesc: string;
+}
