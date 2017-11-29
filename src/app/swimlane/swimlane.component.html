@@ -4,9 +4,10 @@
     </h2>
   </div>
 
-  <button style="float: right;" type="button" class="btn btn-primary" (click)="addStory()">Add a Story</button>&nbsp;&nbsp;
-  <button style="float: right;" type="button" class="btn btn-primary">Add User</button>&nbsp;&nbsp;
-  <button style="float: right;" type="button" class="btn btn-primary">View Chart</button>
+  <button style="float: right;" type="button" class="btn btn-primary">Add a Story</button>
+  <button style="float: right;" type="button" class="btn btn-primary">Add User</button>
+  <button style="float: right;" (click)="getChartSubmit()" routerLink="/chart" type="button" class="btn btn-primary">View Chart</button>
+
   <br> <br>
 </div>
 
@@ -57,6 +58,10 @@
 
               </ng-container>
             </div>
+            <!-- Add New Task works, but storyId is default to 0, will fix when story is in swimlane -->
+            <input id="description" #description (click) = "description.value = null" [(ngModel)]="task.description" name="description" type="text" class="form-control" placeholder="New Task">
+                <!-- Have story id as a parameter in taskSubmit   -->
+              <button (click) = "taskSubmit()" class="btn btn-md btn-primary btn-block">Add New Task</button>
           </div>
         </table>
       </div>
