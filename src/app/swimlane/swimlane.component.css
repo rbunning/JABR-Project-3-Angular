@@ -1,7 +1,9 @@
 #taskInput{
   text-decoration-color: transparent;
 }
-
+#rcorner {
+  border-radius: 10px;
+}
 #taskInput:hover{
   cursor: pointer;
 }
@@ -16,9 +18,11 @@
     float: left;
     padding-right: 15px;
     padding-bottom: 15px;
+    border-radius: 10px;
   }
 
   #userStories{
+    border-radius: 10px;
     width:15rem;
     background:rgb(219, 222, 224);
   }
