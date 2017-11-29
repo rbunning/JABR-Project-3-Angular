@@ -47,6 +47,12 @@
                             </p>
                           </div>
                         </div>
+                        <div>
+                        <!-- Add New Task works, but storyId is default to 0, will fix when story is in swimlane -->
+                          <input id="description" #description (click) = "description.value = null" [(ngModel)]="task.description" name="description" type="text" class="form-control" placeholder="New Task">
+                              <!-- Have story id as a parameter in taskSubmit   -->
+                          <button (click) = "taskSubmit()" class="btn btn-sm btn-primary btn-block">Add New Task</button>
+                        </div>
                       </div>
                     </td>
                     <td>
@@ -58,10 +64,7 @@
 
               </ng-container>
             </div>
-            <!-- Add New Task works, but storyId is default to 0, will fix when story is in swimlane -->
-            <input id="description" #description (click) = "description.value = null" [(ngModel)]="task.description" name="description" type="text" class="form-control" placeholder="New Task">
-                <!-- Have story id as a parameter in taskSubmit   -->
-              <button (click) = "taskSubmit()" class="btn btn-md btn-primary btn-block">Add New Task</button>
+
           </div>
         </table>
       </div>
