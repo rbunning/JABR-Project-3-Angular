@@ -27,20 +27,20 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  getChartSubmit() {
+  // getChartSubmit() {
     
-    console.log("current board id: " + JSON.parse(localStorage.getItem('currentBoard')).boardId);
-    console.log("Get chart by this boardID: " + JSON.parse(localStorage.getItem('currentBoard')).boardId);
-    this.chartService.getChart(JSON.parse(localStorage.getItem('currentBoard')).boardId).subscribe(
-      res => {
-        console.log("Get chart success!", res);
-        //places reponse of task-manager-service/getAllTasks/{storyId} into task array
-        localStorage.setItem('currentChart', JSON.stringify(res));
-        // this.chart = res;
-      }
-    )
+  //   console.log("current board id: " + JSON.parse(localStorage.getItem('currentBoard')).boardId);
+  //   console.log("Get chart by this boardID: " + JSON.parse(localStorage.getItem('currentBoard')).boardId);
+  //   this.chartService.getChart(JSON.parse(localStorage.getItem('currentBoard')).boardId).subscribe(
+  //     res => {
+  //       console.log("Get chart success!", res);
+  //       //places reponse of task-manager-service/getAllTasks/{storyId} into task array
+  //       localStorage.setItem('currentChart', JSON.stringify(res));
+  //       // this.chart = res;
+  //     }
+  //   )
 
-  }
+  // }
   
 
 }
