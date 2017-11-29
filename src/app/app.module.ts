@@ -31,15 +31,22 @@ import { CreateStoryService } from './create-story/create-story.service';
 
 import { AddBoardComponent } from './add-board/add-board.component';
 import { OrderByPipe } from './boards/order-by.pipe';
+import { SwimlaneComponent } from './swimlane/swimlane.component';
+import { SwimlaneService } from './swimlane/swimlane.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent },
   { path: 'task', component: TaskComponent},
   { path: 'scrum-home', redirectTo: 'boards', pathMatch: 'full'},
+  { path: 'home', redirectTo: 'boards', pathMatch: 'full'},
   { path: 'boards', component: BoardsComponent},
+
+  { path: 'add-board', component: AddBoardComponent},
+  { path: 'detail/:id', component: BoardDetailComponent},
+
   { path: 'chart', component: ChartComponent},
-  {path: 'add-Story', component: CreateStoryComponent},
+  { path: 'add-Story', component: CreateStoryComponent},
   { path: 'boards', component: BoardsComponent},
   { path: 'add-board', component: AddBoardComponent}
 ]
@@ -58,7 +65,8 @@ const routes: Routes = [
     ChartComponent,
     CreateStoryComponent,
     AddBoardComponent,
-    OrderByPipe
+    OrderByPipe,
+    SwimlaneComponent
   ],
   imports: [
     BrowserModule,
@@ -66,11 +74,11 @@ const routes: Routes = [
     FormsModule,
     HttpModule,
     HttpClientModule,
-    ChartsModule,   
+    ChartsModule,
     RouterModule.forRoot(routes)
   ],
 
-  providers: [DatePipe, UserService, BoardsService, NavbarService, TaskService, CreateStoryService, ChartService],
+  providers: [DatePipe, UserService, BoardsService, SwimlaneService, NavbarService, TaskService, CreateStoryService, ChartService],
 
   bootstrap: [AppComponent]
 })

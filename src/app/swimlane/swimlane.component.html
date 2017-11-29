@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="jumbotron">
+    <h2 class="text-center" id="boardName">{{currentBoardName}}
+    </h2>
+  </div>
+
+  <button style="float: right;" type="button" class="btn btn-primary">Add a Story</button>
+  <button style="float: right;" type="button" class="btn btn-primary">Add User</button>
+  <button style="float: right;" type="button" class="btn btn-primary">View Chart</button>
+  <br> <br>
+
+  <!-- Story level -->
+  <div class="row">
+    <!-- lane level -->
+    <div class="col-xs-2">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">lane</h3>
+        </div>
+
+        <div class="panel-body">
+          <div style="border-top: solid">
+            <a style="float: left"> <span
+              class="glyphicon glyphicon-triangle-left"></span>
+            </a> <span class="label label-default">Points </span>
+
+            <a style="float: right"> <span
+              class="glyphicon glyphicon-triangle-right"></span>
+            </a> <br /> <span></span>
+
+            <div class="checkbox">
+              <label> <input type="checkbox">
+              </label>
+            </div>
+
+            <input id="textboxId" type="text" placeholder="New Task">
+                <button class="btn btn-default">Add NewTask</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

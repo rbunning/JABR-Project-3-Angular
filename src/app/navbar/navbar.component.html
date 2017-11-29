@@ -7,10 +7,10 @@
     <li class="nav-item" [routerLinkActive]="['active']" >
       <a class="nav-link" href="#" routerLink="/boards">Select a Board</a>
     </li>
-    <li class="nav-item" [routerLinkActive]="['active']">
+    <li class="nav-item" [routerLinkActive]="['active']" *ngIf="navbarService.visible">
       <a class="nav-link" href="#">Create User</a>
     </li>
-    <li class="nav-item" [routerLinkActive]="['active']">
+    <li class="nav-item" [routerLinkActive]="['active']" *ngIf="navbarService.visible">
       <a class="nav-link" href="#" routerLink="/add-board">Add Board</a>
     </li>
   </ul>

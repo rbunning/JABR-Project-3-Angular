@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { ChartComponent } from '../chart/chart.component';
 import { ChartService } from '../chart/chart.service';
+import { NavbarService } from './navbar.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,12 +13,18 @@ import { ChartService } from '../chart/chart.service';
 export class NavbarComponent implements OnInit {
 
   roleId = JSON.parse(localStorage.getItem('currentUser')).roleType.roleId;
-  
+
   constructor(
+    private navbarService: NavbarService,
     private chartService: ChartService, 
     private router: Router) { }
 
   ngOnInit() {
+    if( this.roleId != 2) {
+      this.navbarService.hide();
+    } else {
+      this.navbarService.show();
+    }
   }
 
   getChartSubmit() {
