@@ -4,7 +4,8 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { ChartsModule } from 'ng2-charts';
 import { Http } from "@angular/http";
 import { DatePipe } from '@angular/common';
-
+import { ChartService } from './chart.service';
+import { Chart } from './chart.interface';
 import { BaseChartDirective } from 'ng2-charts/ng2-charts';
 
 @Component({
@@ -14,32 +15,67 @@ import { BaseChartDirective } from 'ng2-charts/ng2-charts';
 })
 export class ChartComponent implements OnInit {
 
-  constructor() { }
+  chart: Chart = {
+    type: '',
+    data: {
+        labels: [
+           null
+        ],
+        datasets: [
+            {
+                label: '',
+                data: [
+                   null
+                ],
+                borderColor: '',
+                fill: null
+            }
+        ]
+    }
+  }
+  
+
+  constructor(
+    private chartService: ChartService, 
+    private router: Router
+  ) { }
 
   ngOnInit() {
+    this.chart = JSON.parse(localStorage.getItem('currentChart'));
   }
-
-  //Temporary dummy data for practice
-  public lineChartData:Array<any> = [
-    {data: [43, 33, 31, 29, 25, 20], label: "Story Points"}
-  ];
-
-  public lineChartLabels:Array<any> = ["2017-10-30", "2017-11-01",
-  "2017-11-02", "2017-11-03", "2017-11-06", "2017-11-07"];
  
-  public lineChartColor:Array<any> = [ 
+  /*
+    Things to do for chart:
+      change colors
+      center chart
+      have points end in 0
+      make sure a straight line shows for a board with no stories in done lane
+  */
+  public lineChartColors:Array<any> = [ 
     {
-    backgroundColor: 'rgba(148,159,177,0.2)',
-    borderColor: 'rgba(148,159,177,1)',
-    pointBackgroundColor: 'rgba(148,159,177,1)',
-    pointBorderColor: '#fff',
-    pointHoverBackgroundColor: '#fff',
-    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    backgroundColor: 'rgb(255, 0, 0)',
+    borderColor: 'rgb(255, 0, 0)',
+    pointBackgroundColor: 'rgb(255, 0, 0)',
+    pointBorderColor: 'rgb(255, 0, 0)',
+    pointHoverBackgroundColor: 'rgb(255, 0, 0)',
+    pointHoverBorderColor: 'rgb(255, 0, 0)'
     }
   ];
 
-  public lineChartType:string ='line';
+  public lineChartLabels:Array<any> = [ 
+    {
+      defaultFontSize: 20
+    }
+  ];
 
-
-
+  public lineChartOptions:Array<any> = [ 
+    {
+    backgroundColor: 'rgb(255, 0, 0)',
+    borderColor: 'rgb(255, 0, 0)',
+    pointBackgroundColor: 'rgb(255, 0, 0)',
+    pointBorderColor: 'rgb(255, 0, 0)',
+    pointHoverBackgroundColor: 'rgb(255, 0, 0)',
+    pointHoverBorderColor: 'rgb(255, 0, 0)'
+    }
+  ];
 }
