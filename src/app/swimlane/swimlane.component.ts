@@ -87,11 +87,9 @@ export class SwimlaneComponent implements OnInit {
 
     this.swimlaneService.moveStoryLane(this.story).subscribe(
       res => {
-        this.zone.run(() => {
           console.log("Swimlane has changed ");
           // this.router.navigate(['/detail', this.currentBoardId]);
           this.displayAllStories();
-        });
       });
   }
 
