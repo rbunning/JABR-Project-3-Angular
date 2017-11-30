@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { DatePipe } from '@angular/common';
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -23,7 +24,6 @@ import { CreateStoryComponent } from './create-story/create-story.component';
 import { HomeComponent } from './home/home.component';
 import { BoardsComponent } from './boards/boards.component';
 import { BoardDetailComponent } from './board-detail/board-detail.component';
-
 import { TaskService } from './task/task.service';
 import { ChartComponent } from './chart/chart.component';
 import { ChartsModule } from 'ng2-charts';
@@ -33,6 +33,8 @@ import { AddBoardComponent } from './add-board/add-board.component';
 import { OrderByPipe } from './boards/order-by.pipe';
 import { SwimlaneComponent } from './swimlane/swimlane.component';
 import { SwimlaneService } from './swimlane/swimlane.service';
+import { ModalComponent } from './modal/modal.component';
+import { ModalService } from './modal/modal.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -41,6 +43,7 @@ const routes: Routes = [
   { path: 'scrum-home', redirectTo: 'boards', pathMatch: 'full'},
   { path: 'home', redirectTo: 'boards', pathMatch: 'full'},
   { path: 'boards', component: BoardsComponent},
+  { path: 'modal', component: ModalComponent},
 
   { path: 'add-board', component: AddBoardComponent},
   { path: 'detail/:id', component: BoardDetailComponent},
@@ -66,7 +69,8 @@ const routes: Routes = [
     CreateStoryComponent,
     AddBoardComponent,
     OrderByPipe,
-    SwimlaneComponent
+    SwimlaneComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -75,10 +79,15 @@ const routes: Routes = [
     HttpModule,
     HttpClientModule,
     ChartsModule,
+    BootstrapModalModule,
+    BootstrapModalModule.forRoot({container:document.body}),
     RouterModule.forRoot(routes)
   ],
+  entryComponents: [
+    ModalComponent
+  ],
 
-  providers: [DatePipe, UserService, BoardsService, SwimlaneService, NavbarService, TaskService, CreateStoryService, ChartService],
+  providers: [DatePipe, UserService, BoardsService, SwimlaneService, NavbarService, TaskService, CreateStoryService, ChartService, ModalService],
 
   bootstrap: [AppComponent]
 })

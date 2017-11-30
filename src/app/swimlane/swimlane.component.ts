@@ -4,9 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { SwimlaneService } from './swimlane.service';
 import { Story } from './story.interface';
 
+import { Input } from '@angular/core';
 import { CreateStoryService }  from '../create-story/create-story.service';
 import { MoveStory } from './move-story.interface';
 
+import { ModalComponent} from '../modal/modal.component';
+import { ModalService } from '../modal/modal.service';
+import { DialogService } from "ng2-bootstrap-modal";
 import { ChartComponent } from '../chart/chart.component';
 import { ChartService } from '../chart/chart.service';
 import { TaskService } from '../task/task.service';
@@ -40,17 +44,23 @@ export class SwimlaneComponent implements OnInit {
     laneTypeId: null
   }
 
+
   deleteThisStory: DeleteStory = {
     storyId: null
   }
 
 
   stories: Story[];
+  
   task: Task = {
     taskId:    null,
     storyId: null,  //change this later to import Story and get storyId from there
     description : ''
   }
+
+  modalComponent: ModalComponent;
+
+  @Input() _tasksArray: Task[];
 
   constructor(
     private zone: NgZone,
@@ -58,8 +68,10 @@ export class SwimlaneComponent implements OnInit {
     private swimlaneService: SwimlaneService,
     private createStoryService: CreateStoryService,
 
+    private dialogService:DialogService,
     private chartService: ChartService,
     private taskService: TaskService,
+    private modalService: ModalService
     ) { }
 
   ngOnInit() {
@@ -77,6 +89,7 @@ export class SwimlaneComponent implements OnInit {
         console.log("Stories: ", this.stories);
         localStorage.setItem('curentStories', JSON.stringify(res));
       })
+      
   }
 
 
@@ -124,4 +137,35 @@ export class SwimlaneComponent implements OnInit {
       });
 
   }
+  /*Add this or change this to display tasks function
+    clear out unneccessary modal stuff from example 
+    make sure modal displays current Story name, Story Description, All current tasks, 
+           ability to create a new task in modal and hopefully have it show immediately without having to reload or close modal
+  */
+  
+  //This will have a modal display the story name, story description, all the current tasks for the story, and allow the creation of a new story
+  displayTasks(currentStoryId, currentStoryName, currentStoryDescription) {
+    let disposable = this.dialogService.addDialog(ModalComponent, {
+        title: currentStoryName,  //test this
+        message: currentStoryDescription
+      } )
+        //Display tasks here
+        console.log("Get tasks by this ID: " + currentStoryId);
+              this.taskService.getTasks(currentStoryId).subscribe(
+                res => {
+                  console.log("Get tasks success!", res);
+                  //places reponse of task-manager-service/getAllTasks/{storyId} into task array
+                  // this._tasksArray = res;
+                  // localStorage.removeItem('currentTasks');
+                  // this.modalComponent._tasksArray = res;
+                  // this.modalComponent.showCurrentTasks(this._tasksArray);
+                  localStorage.setItem('currentTasks', JSON.stringify(res));
+                  localStorage.setItem('currentStoryId', currentStoryId);
+                  console.log("Current tasks: " + JSON.stringify(res) );
+                  
+                } 
+              )
+  
+}
+  
 }
