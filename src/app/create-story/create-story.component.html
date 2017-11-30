@@ -1,7 +1,9 @@
 <app-navbar></app-navbar>
 
-  <div class="jumbotron">
-    <form  (ngSubmit)="storySubmit()">
+  <div class="jumbotron" style="width:500px; height:500px; text-align: center; overflow:auto">
+  <button (click) = "backToStories()" class="btn btn-sm btn-primary">Back to Stories</button>
+    <form (ngSubmit)="storySubmit()">
+
       <div class="form-group">
         <label for="sel3">Select Story Point:</label>
         <select class="form-control" id="sel3" [(ngModel)]="story.storyPoints" name ="storyPoints" >

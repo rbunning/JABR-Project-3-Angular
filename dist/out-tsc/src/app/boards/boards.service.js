@@ -20,15 +20,18 @@ var BoardsService = /** @class */ (function () {
         this.GET_ALL_BOARDS = '/board-manager-service/getAllBoards';
     }
     BoardsService_1 = BoardsService;
+    //Retrieve all boards from current user
     BoardsService.prototype.getAllBoards = function () {
         return this.http.get(this.GET_ALL_BOARDS)
             .map(function (response) { return response.json(); });
     };
+    //Retrieve a single board based on selection
     BoardsService.prototype.getBoard = function (scrumUserId) {
         var headers = new http_1.HttpHeaders({ 'Content-Type': 'text/plain' });
         console.log("scrumUserId: ", scrumUserId);
         return this.httpClient.post(BoardsService_1.BOARDS_URL, scrumUserId, { headers: headers });
     };
+    //Add a board based with a board name
     BoardsService.prototype.addBoard = function (newBoard) {
         var headers = new http_1.HttpHeaders({ 'Content-Type': 'application/json' });
         return this.httpClient.post(BoardsService_1.ADD_BOARD_URL, newBoard, { headers: headers });

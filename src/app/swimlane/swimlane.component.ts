@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { SwimlaneService } from './swimlane.service';
 import { Story } from './story.interface';
+
 import { Input } from '@angular/core';
 import { CreateStoryService }  from '../create-story/create-story.service';
 import { MoveStory } from './move-story.interface';
@@ -15,6 +16,7 @@ import { ChartService } from '../chart/chart.service';
 import { TaskService } from '../task/task.service';
 import { Task } from '../task/task.interface';
 
+import { DeleteStory } from './delete-story.interface';
 
 @Component({
   selector: 'app-swimlane',
@@ -42,11 +44,9 @@ export class SwimlaneComponent implements OnInit {
     laneTypeId: null
   }
 
-  displayStory: Story ={
-    storyId: null,
-    storyDesc:  '',
-    storyName: '',
-    storyPoints: null
+
+  deleteThisStory: DeleteStory = {
+    storyId: null
   }
 
 
@@ -67,6 +67,7 @@ export class SwimlaneComponent implements OnInit {
     private router: Router,
     private swimlaneService: SwimlaneService,
     private createStoryService: CreateStoryService,
+
     private dialogService:DialogService,
     private chartService: ChartService,
     private taskService: TaskService,
@@ -93,26 +94,17 @@ export class SwimlaneComponent implements OnInit {
 
 
   switchLane(s: Story, id: number, index: number): void {
-    console.log("index: ", index);
-    console.log("story: ", s);
-    console.log("story id ",id);
     this.story.storyId = id;
     this.story.laneTypeId = index + 1;
 
-    console.log(this.story.storyId);
-    console.log(this.story.laneTypeId);
-
     this.swimlaneService.moveStoryLane(this.story).subscribe(
       res => {
-        this.zone.run(() => {
           console.log("Swimlane has changed ");
           // this.router.navigate(['/detail', this.currentBoardId]);
           this.displayAllStories();
-        });
       });
   }
 
-  //function for the button that retrieves burndown chart for current board
   getChartSubmit() {
     console.log("current board id: " + this.currentBoardId);
     this.chartService.getChart(this.currentBoardId).subscribe(
@@ -126,6 +118,25 @@ export class SwimlaneComponent implements OnInit {
 
   }
 
+  taskSubmit() {
+    console.log("Creating new task: ", (this.task).description);
+    // this.task.storyId = this.story.storyId;
+    this.taskService.createTask(this.task).subscribe(
+      res => {
+          console.log("Create Task Success!", res);
+
+      });
+  }
+
+  deleteStory(id: number): void{
+    this.deleteThisStory.storyId = id;
+    this.swimlaneService.deleteStory(this.deleteThisStory).subscribe(
+      res => {
+        console.log("Delete Story Proceed");
+        this.displayAllStories();
+      });
+
+  }
   /*Add this or change this to display tasks function
     clear out unneccessary modal stuff from example 
     make sure modal displays current Story name, Story Description, All current tasks, 

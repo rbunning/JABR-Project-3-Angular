@@ -21,8 +21,6 @@ var BoardsComponent = /** @class */ (function () {
         this.newBoard = {
             boardName: ''
         };
-        //use this syntax to fetch the specific variable you need
-        // var scrumUserId = JSON.parse(localStorage.getItem('currentUser')).scrumUserId;
         this.scrumUserId = JSON.parse(localStorage.getItem("currentUser")).scrumUserId;
         this.roleId = JSON.parse(localStorage.getItem('currentUser')).roleType.roleId;
     }

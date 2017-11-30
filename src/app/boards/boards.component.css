@@ -4,6 +4,10 @@
   color: white;
 }
 
+#boardName {
+  font-family: 'Dosis', sans-serif;
+}
+
 .boards {
   margin: 0 0 2em 0;
   list-style-type: none;
@@ -49,7 +53,7 @@
   display: inline-block;
   font-size: small;
   color: white;
-  padding: -2em 1em 0 1em;
+  padding: -2 em 1em 0 1em;
   background-color: #607D8B;
   background-color: rgb(0,120,215);
   line-height: 1em;
@@ -81,6 +85,16 @@ button.add-button{
   color:white;
 }
 
+button.delete-button{
+  float:right;
+  background-color: red !important;
+  background-color: rgb(216,59,1) !important;
+  color:white;
+  position:absolute;
+  bottom:0;
+  right:0;
+}
+
 .form-group{
   margin-top: 10px;
 }
@@ -105,3 +119,7 @@ textarea.form-control {
   background-color: transparent;
   color: #fff;
 }
+
+/*#selectedBoard {
+  float: right;
+}*/
