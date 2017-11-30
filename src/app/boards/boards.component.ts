@@ -10,6 +10,8 @@ import { NewBoard } from './newBoard.interface';
 
 import { Pipe, PipeTransform } from '@angular/core';
 import { OrderByPipe } from './order-by.pipe';
+import { DeleteBoard } from './delete-board.interface';
+
 @Component({
   selector: 'app-boards',
   templateUrl: './boards.component.html',
@@ -27,6 +29,10 @@ export class BoardsComponent implements OnInit {
     boardName:''
   }
 
+  deleteThisBoard: DeleteBoard = {
+    boardId: null
+  }
+
   selectedBoard: Board;
   id: number;
   name: string;
@@ -38,6 +44,10 @@ export class BoardsComponent implements OnInit {
 
   ngOnInit() {
     this.displayAllBoards();
+  }
+
+  Select(board: Board): void {
+    this.selectedBoard = board;
   }
 
   scrumUserId = JSON.parse(localStorage.getItem("currentUser")).scrumUserId;
@@ -79,6 +89,14 @@ export class BoardsComponent implements OnInit {
             console.log("This is for testing: ", res);
           })
       }
+  }
+
+  deleteBoard(id: number): void {
+    this.deleteThisBoard.boardId = id;
+    this.boardsService.deleteBoard(this.deleteThisBoard).subscribe(
+      res => {
+        this.displayAllBoards();
+      });
   }
 }
 

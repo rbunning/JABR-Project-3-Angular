@@ -6,12 +6,15 @@ import { Board } from './board.interface';
 import { NewBoard } from './newBoard.interface';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { DeleteBoard } from './delete-board.interface';
 
 @Injectable()
 export class BoardsService {
   private static readonly BOARDS_URL = '/board-manager-service/getBoards';
   private static readonly ADD_BOARD_URL = '/board-manager-service/newBoard';
+  private static readonly DELETE_BOARD_URL = '/board-manager-service/deleteBoard';
   private GET_ALL_BOARDS = '/board-manager-service/getAllBoards';
+
 
   constructor(
     private http: Http,
@@ -21,6 +24,12 @@ export class BoardsService {
   getAllBoards() {
     return this.http.get(this.GET_ALL_BOARDS)
                     .map(response => <Board[]> response.json());
+  }
+
+  //Delete a board based on boardId
+  deleteBoard(board: DeleteBoard): Observable<any> {
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.httpClient.post(BoardsService.DELETE_BOARD_URL, board, {headers: headers} );
   }
 
   //Retrieve a single board based on selection
