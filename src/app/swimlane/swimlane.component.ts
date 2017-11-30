@@ -48,7 +48,7 @@ export class SwimlaneComponent implements OnInit {
   stories: Story[];
   task: Task = {
     taskId:    null,
-    storyId: null,  //change this later to import Story and get storyId from there
+    storyId: null,  //changed this later to import Story and get storyId from there
     description : ''
   }
 
