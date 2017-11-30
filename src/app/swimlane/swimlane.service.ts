@@ -5,12 +5,14 @@ import { Http } from '@angular/http';
 import { Story } from './story.interface';
 import 'rxjs/add/operator/map';
 import { MoveStory } from './move-story.interface';
+import { DeleteStory } from './delete-story.interface';
 
 @Injectable()
 export class SwimlaneService {
 
   private GET_ALL_STORIES = "/story-manager-service/allboardStories/";
 
+  private static readonly DELETE_STORY_URL = "/story-manager-service/deleteStory/";
   private static readonly MOVE_STORY_URL ='/story-manager-service/moveStoryLane';
 
   // private headers = new HttpHeaders({'Content-Type': 'application/json'});
@@ -21,9 +23,13 @@ export class SwimlaneService {
   }
 
   moveStoryLane(story: MoveStory): Observable<any> {
-    // return this.httpClient.post(SwimlaneService.MOVE_STORY_URL, story, {headers: this.headers});
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.httpClient.post(SwimlaneService.MOVE_STORY_URL, story, {headers: headers});
+  }
+
+  deleteStory(story: DeleteStory): Observable<any> {
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.httpClient.post(SwimlaneService.DELETE_STORY_URL, story, {headers: headers});
   }
 
   constructor(

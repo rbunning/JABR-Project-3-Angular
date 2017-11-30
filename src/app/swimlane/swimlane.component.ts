@@ -12,6 +12,7 @@ import { ChartService } from '../chart/chart.service';
 import { TaskService } from '../task/task.service';
 import { Task } from '../task/task.interface';
 
+import { DeleteStory } from './delete-story.interface';
 
 @Component({
   selector: 'app-swimlane',
@@ -37,6 +38,10 @@ export class SwimlaneComponent implements OnInit {
   story: MoveStory ={
     storyId: null,
     laneTypeId: null
+  }
+
+  deleteThisStory: DeleteStory = {
+    storyId: null
   }
 
 
@@ -76,14 +81,8 @@ export class SwimlaneComponent implements OnInit {
 
 
   switchLane(s: Story, id: number, index: number): void {
-    console.log("index: ", index);
-    console.log("story: ", s);
-    console.log("story id ",id);
     this.story.storyId = id;
     this.story.laneTypeId = index + 1;
-
-    console.log(this.story.storyId);
-    console.log(this.story.laneTypeId);
 
     this.swimlaneService.moveStoryLane(this.story).subscribe(
       res => {
@@ -114,5 +113,15 @@ export class SwimlaneComponent implements OnInit {
           console.log("Create Task Success!", res);
 
       });
+  }
+
+  deleteStory(id: number): void{
+    this.deleteThisStory.storyId = id;
+    this.swimlaneService.deleteStory(this.deleteThisStory).subscribe(
+      res => {
+        console.log("Delete Story Proceed");
+        this.displayAllStories();
+      });
+
   }
 }

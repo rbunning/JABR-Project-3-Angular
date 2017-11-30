@@ -32,11 +32,22 @@ export class CreateStoryComponent implements OnInit {
   }
 
   storySubmit() {
-    this.storyService.createNewStory(this.story).subscribe(
+    if(this.story.storyName == null){
+      window.alert("Story Name cannot be empty");
+    } else if(this.story.storyPoints == null){
+      window.alert("You need to select story points");
+    } else if(this.story.storyDesc == null){
+      window.alert("Story description cannot be empty");
+    } else {
+      this.storyService.createNewStory(this.story).subscribe(
       res => {
         // this.router.navigateByUrl('/boards');
         this.router.navigate(['/detail', this.currentBoardId]);
-      }
-    );
+      });
+    }
+  }
+
+  backToStories(): void {
+    this.router.navigate(['/detail', this.currentBoardId]);
   }
 }
