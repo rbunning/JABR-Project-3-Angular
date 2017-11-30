@@ -29,6 +29,7 @@ export class TaskComponent implements OnInit {
     
   }
 
+  //this will be obsolete once it is implemented in swimlane component
   taskSubmit() {
     console.log("Creating new task: ", (this.task).description);
     this.taskService.createTask(this.task).subscribe(
@@ -37,6 +38,7 @@ export class TaskComponent implements OnInit {
       });
   }
 
+  //this will be obsolete once it is implemented in swimlane component
   getTasksSubmit(storyIdInput) {
 
     console.log("Get tasks by this ID: " + storyIdInput);
