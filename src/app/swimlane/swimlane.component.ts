@@ -147,7 +147,7 @@ export class SwimlaneComponent implements OnInit {
                   // this._tasksArray = res;
                   // localStorage.removeItem('currentTasks');
                   // this.modalComponent._tasksArray = res;
-                  this.modalComponent.showCurrentTasks(this._tasksArray);
+                  // this.modalComponent.showCurrentTasks(this._tasksArray);
                   localStorage.setItem('currentTasks', JSON.stringify(res));
                   localStorage.setItem('currentStoryId', currentStoryId);
                   console.log("Current tasks: " + JSON.stringify(res) );

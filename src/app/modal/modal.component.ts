@@ -34,7 +34,7 @@ export class ModalComponent extends DialogComponent<ModalModel, boolean> impleme
   }
 
   ngOnInit() {
-    // this._tasksArray = JSON.parse(localStorage.getItem('currentTasks'));
+    this._tasksArray = JSON.parse(localStorage.getItem('currentTasks'));
     // this._tasksArray = this.modalService._tasksArray; 
     // console.log("Modal tasks: " + this._tasksArray);
     // // localStorage.removeItem('currentTasks');
