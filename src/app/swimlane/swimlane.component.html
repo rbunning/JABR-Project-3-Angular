@@ -51,6 +51,7 @@
                           <input id="description" #description (click) = "description.value = null" [(ngModel)]="task.description" name="description" type="text" class="form-control" placeholder="New Task">
                               <!-- Have story id as a parameter in taskSubmit   -->
                           <button (click) = "taskSubmit()" class="btn btn-sm btn-primary btn-block">Add New Task</button>
+                          <button (click) = "deleteStory(story.storyId)" class="btn btn-sm btn-danger btn-block">Delete Story</button>
                         </div>
                       </div>
                     </td>
