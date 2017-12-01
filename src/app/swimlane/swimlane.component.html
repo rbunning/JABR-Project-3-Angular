@@ -34,7 +34,7 @@
                     </td>
                     <td>
                       <div id="userStories" class="story">
-                        <div (click)="displayTasks(story.storyId, story.storyName, story.storyDesc)" class="story-block">
+                        <div (click)="displayTasks(story.storyId, story.storyName, story.storyDesc, story.storyPoints)" class="story-block">
                           <div class="alert alert-info" role="alert"><p id="boardName">Points: {{story.storyPoints}}</p> </div>
                           <h6 class="text-center" data-toggle="modal" data-target=".story-modal-sm"><strong id="boardName">{{story.storyName}}</strong></h6>
                           <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
