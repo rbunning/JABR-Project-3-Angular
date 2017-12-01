@@ -10,6 +10,23 @@
     <button (click)="onSelect(selectedBoard, selectedBoard.boardId, selectedBoard.boardName)" id="boardName">View Details</button>
   </div>
 </div>
+<div class="relative" *ngIf="selectedBoard">
+  <div class="container">
+    <div class="jumbotron">
+      <div>
+        <h2>this is for comment section of <strong>{{selectedBoard.boardName}}</strong></h2>
+        <button class="btn btn-md btn-active" (click)="deleteBoard(board.boardId)"><strong>Add Comment</strong></button>
+        <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent non augue risus. Integer sagittis quam eu lorem dignissim ultricies. Fusce a erat turpis. Duis venenatis imperdiet metus non pharetra. Quisque varius odio felis. In hac habitasse platea dictumst. Vestibulum lacinia elementum ultrices. Ut fringilla velit vulputate blandit scelerisque. Phasellus condimentum, ligula ut cursus euismod, mi ex tristique ante, non placerat orci leo quis arcu. Curabitur hendrerit sollicitudin ornare. Nam in lacus tempor, iaculis nibh eget, congue ex. Cras est leo, feugiat quis facilisis at, mollis ac odio. Nunc efficitur faucibus tortor, sed molestie turpis tempus id. Aliquam non venenatis enim. Suspendisse potenti.
+
+      Proin ac lorem dignissim, eleifend magna porttitor, ultricies erat. Sed hendrerit condimentum felis. Praesent hendrerit tempor enim, vitae posuere nunc auctor ac. Sed non nibh sed magna tempor tempor non quis nisi. Suspendisse sed consequat turpis. Ut tincidunt lorem vitae lorem finibus, quis finibus libero dictum. Aenean ullamcorper nunc ante, sit amet varius erat ullamcorper vel. In hac habitasse platea dictumst. Vestibulum vitae dapibus nisi. Sed eu eros quis nibh lacinia luctus. Donec sollicitudin odio quis ultrices blandit. Sed nec ultrices eros. Aenean auctor varius magna vehicula rhoncus. Donec at iaculis lorem. Ut malesuada est in erat varius egestas.
+      </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <ul class="boards" style="position:relative;">
   <li *ngFor="let board of boards | orderBy:['boardId', 'boardName']" (click)="Select(board)" [class.selected]="board === selectedBoard" style="width:400px;height:100px">
     <span class="board-element">
@@ -19,6 +36,4 @@
     <button class="btn btn-md delete-button" (click)="deleteBoard(board.boardId)">Delete</button>
   </li>
 </ul>
-
-
 
