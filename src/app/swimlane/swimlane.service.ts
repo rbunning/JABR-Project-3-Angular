@@ -11,12 +11,8 @@ import { DeleteStory } from './delete-story.interface';
 export class SwimlaneService {
 
   private GET_ALL_STORIES = "/story-manager-service/allboardStories/";
-
   private static readonly DELETE_STORY_URL = "/story-manager-service/deleteStory/";
-
   private static readonly MOVE_STORY_URL ='/story-manager-service/moveStoryLane';
-
-  // private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
   // This setup the header information for the request.
   private headers = new Headers({ 
@@ -31,12 +27,10 @@ export class SwimlaneService {
   }
 
   moveStoryLane(story: MoveStory): Observable<any> {
-    //const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.post(SwimlaneService.MOVE_STORY_URL, story, this.options);
   }
 
   deleteStory(story: DeleteStory): Observable<any> {
-    //const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.post(SwimlaneService.DELETE_STORY_URL, story, this.options);
   }
 
