@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Http } from '@angular/http';
+import { Headers, Http, RequestOptions } from '@angular/http';
 import { Story } from './story.interface';
 import 'rxjs/add/operator/map';
 import { MoveStory } from './move-story.interface';
@@ -18,19 +18,26 @@ export class SwimlaneService {
 
   // private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
+  // This setup the header information for the request.
+  private headers = new Headers({ 
+    "Content-Type": "application/json",
+    'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('currentUsertoken')).token 
+  });
+  private options = new RequestOptions({ headers: this.headers });
+
   getAllStories(boardId: number) {
-    return this.http.get(this.GET_ALL_STORIES + boardId)
+    return this.http.get(this.GET_ALL_STORIES + boardId, this.options)
                     .map(response => <Story[]> response.json());
   }
 
   moveStoryLane(story: MoveStory): Observable<any> {
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.httpClient.post(SwimlaneService.MOVE_STORY_URL, story, {headers: headers});
+    //const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.post(SwimlaneService.MOVE_STORY_URL, story, this.options);
   }
 
   deleteStory(story: DeleteStory): Observable<any> {
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.httpClient.post(SwimlaneService.DELETE_STORY_URL, story, {headers: headers});
+    //const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.post(SwimlaneService.DELETE_STORY_URL, story, this.options);
   }
 
   constructor(

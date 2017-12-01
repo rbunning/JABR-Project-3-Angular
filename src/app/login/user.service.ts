@@ -33,7 +33,7 @@ export class UserService {
     // This setup the header information for the request.
     this.headersOauth = new Headers({ 
       "Content-Type": "application/json",
-      'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('currentUser')).token 
+      'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('currentUsertoken')).token 
     });
     this.options = new RequestOptions({ headers: this.headersOauth });
 
@@ -62,10 +62,10 @@ export class UserService {
       .map(res => res.json()).subscribe(response => {
         
         // Adds the token to the local storage for reuse.
-        localStorage.setItem('currentUser', JSON.stringify(
+        localStorage.setItem('currentUsertoken', JSON.stringify(
           {userName:user.scrumUserUsername, token: response.access_token }));
           
-        console.log(localStorage.getItem('currentUser'));
+        console.log(localStorage.getItem('currentUsertoken'));
       }, (error) => {
         console.log('error in', error);
       });
