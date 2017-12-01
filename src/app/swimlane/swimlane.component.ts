@@ -62,9 +62,7 @@ export class SwimlaneComponent implements OnInit {
     description : ''
   }
 
-  modalComponent: ModalComponent;
-
-  @Input() _tasksArray: Task[];
+  _tasksArray: Task[];
 
   constructor(
     private zone: NgZone,
@@ -80,6 +78,7 @@ export class SwimlaneComponent implements OnInit {
 
   ngOnInit() {
     this.displayAllStories();
+
   }
 
   addStory(): void {
@@ -148,28 +147,12 @@ export class SwimlaneComponent implements OnInit {
   */
   
   //This will have a modal display the story name, story description, all the current tasks for the story, and allow the creation of a new story
-  displayTasks(currentStoryId, currentStoryName, currentStoryDescription) {
+  displayTasks(currentStoryId, currentStoryName, currentStoryDescription, currentStoryPoints) {
+    localStorage.setItem('currentStoryId', currentStoryId);
     let disposable = this.dialogService.addDialog(ModalComponent, {
         title: currentStoryName,  //test this
-        message: currentStoryDescription
+        message: "Story Points: " + currentStoryPoints
       } )
-        //Display tasks here
-        console.log("Get tasks by this ID: " + currentStoryId);
-              this.taskService.getTasks(currentStoryId).subscribe(
-                res => {
-                  console.log("Get tasks success!", res);
-                  //places reponse of task-manager-service/getAllTasks/{storyId} into task array
-                  // this._tasksArray = res;
-                  // localStorage.removeItem('currentTasks');
-                  // this.modalComponent._tasksArray = res;
-                  // this.modalComponent.showCurrentTasks(this._tasksArray);
-                  localStorage.setItem('currentTasks', JSON.stringify(res));
-                  localStorage.setItem('currentStoryId', currentStoryId);
-                  console.log("Current tasks: " + JSON.stringify(res) );
-                  
-                } 
-              )
-  
 }
   
 }
