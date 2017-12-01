@@ -11,8 +11,11 @@ import { SwimlaneService } from '../swimlane/swimlane.service';
 })
 export class CreateStoryComponent implements OnInit {
 
-  private currentBoard= JSON.parse(localStorage.getItem('currentBoardForLanes'));
-  currentBoardId = this.currentBoard[0].boardId;
+  // private currentBoard= JSON.parse(localStorage.getItem('currentBoardForLanes'));
+  // currentBoardId = this.currentBoard[0].boardId;
+
+  private currentBoard= JSON.parse(localStorage.getItem('currentBoard'));
+  currentBoardId = this.currentBoard.boardId;
 
   story: CreateStory = {
     boardId: this.currentBoardId,
