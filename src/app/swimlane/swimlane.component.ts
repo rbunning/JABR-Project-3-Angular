@@ -26,10 +26,6 @@ import { DeleteStory } from './delete-story.interface';
 
 export class SwimlaneComponent implements OnInit {
 
-  // private currentBoard= JSON.parse(localStorage.getItem('currentBoardForLanes'));
-  // currentBoardId = this.currentBoard[0].boardId;
-  // currentBoardName = this.currentBoard[0].boardName;
-
   private currentBoard= JSON.parse(localStorage.getItem('currentBoard'));
   currentBoardId = this.currentBoard.boardId;
   currentBoardName = this.currentBoard.boardName;
