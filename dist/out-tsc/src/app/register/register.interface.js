@@ -1,0 +1,1 @@
+//# sourceMappingURL=register.interface.js.map

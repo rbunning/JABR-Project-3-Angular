@@ -4,6 +4,9 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { Board } from '../boards/board.interface';
 import { BoardsService } from '../boards/boards.service';
+import { NewBoard } from '../boards/newBoard.interface';
+import { BoardsComponent } from '../boards/boards.component';
+import { SwimlaneComponent } from '../swimlane/swimlane.component';
 @Component({
   selector: 'app-board-detail',
   templateUrl: './board-detail.component.html',
@@ -14,15 +17,31 @@ export class BoardDetailComponent implements OnInit {
   @Output() close = new EventEmitter();
   error: any;
   navigated = false;
+  currenBoardId: number;
 
   constructor(
     private boardsService: BoardsService,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.params.forEach((params: Params) => {
+      const id =  +params['id'];
+      this.currenBoardId = id;
+      this.navigated = true;
+      this.boardsService.getBoard(id).subscribe(
+        res => {
+          console.log('log currentBoard', res);
+          // localStorage.setItem('currentBoard', JSON.stringify(res));
+        })
+    });
+    this.callCurrentBoard();
   }
 
-  save(): void{
-
+  callCurrentBoard(): void {
+    this.boardsService.getBoard(this.currenBoardId).subscribe(
+      res => {
+        console.log('log currentBoard call', res);
+        localStorage.setItem('currentBoardForLanes', JSON.stringify(res));
+      });
   }
 }
