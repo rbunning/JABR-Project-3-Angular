@@ -7,6 +7,7 @@ import { Board } from './board.interface';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { BoardDetailComponent } from '../board-detail/board-detail.component';
 import { NewBoard } from './newBoard.interface';
+import { ChartService } from '../chart/chart.service';
 
 import { Pipe, PipeTransform } from '@angular/core';
 import { OrderByPipe } from './order-by.pipe';
@@ -40,14 +41,18 @@ export class BoardsComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private boardsService: BoardsService) { }
+    private boardsService: BoardsService, 
+    private chartService: ChartService,) { }
 
   ngOnInit() {
     this.displayAllBoards();
   }
 
-  Select(board: Board): void {
+  Select(board: Board, boardId): void {
     this.selectedBoard = board;
+    this.loadChart(boardId);
+    localStorage.setItem('currentBoardId',boardId); //delete this if loadChart works
+    console.log("Select function board ID: " + boardId); //delete this if loadChart works
   }
 
   scrumUserId = JSON.parse(localStorage.getItem("currentUser")).scrumUserId;
@@ -72,6 +77,16 @@ export class BoardsComponent implements OnInit {
     this.gotoDetail();
     console.log("current board: " + JSON.stringify(board));
     localStorage.setItem('currentBoard', JSON.stringify(board));
+  }
+
+  //pre-loads chart for current board so chart will display when view chart button is clicked
+  loadChart(selectedBoardId){
+    this.chartService.getChart(selectedBoardId).subscribe(
+      res => {
+        console.log("loadChart function success!", res);
+        localStorage.setItem('currentChart', JSON.stringify(res));
+      }
+    )
   }
 
   gotoDetail() {

@@ -40,16 +40,25 @@ export class ChartComponent implements OnInit {
     private router: Router
   ) { }
 
+  currentBoardId;
   ngOnInit() {
     this.chart = JSON.parse(localStorage.getItem('currentChart'));
   }
- 
+  // ****TODO: Add board name when chart is displayed
+  // displayCurrentChart() {
+  //   this.currentBoardId = JSON.parse(localStorage.getItem('currentBoardId'));
+  //   console.log("chart component current chart: " + this.chart);
+
+
+  // }
+
   /*
     Things to do for chart:
       change colors
       center chart
       have points end in 0
       make sure a straight line shows for a board with no stories in done lane
+      add a back button to go back to board details
   */
   public lineChartColors:Array<any> = [ 
     {

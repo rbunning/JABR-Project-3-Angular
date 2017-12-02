@@ -58,7 +58,7 @@ export class SwimlaneComponent implements OnInit {
   
   task: Task = {
     taskId:    null,
-    storyId: null,  //change this later to import Story and get storyId from there
+    storyId: null,  
     description : ''
   }
 
@@ -78,7 +78,6 @@ export class SwimlaneComponent implements OnInit {
 
   ngOnInit() {
     this.displayAllStories();
-
   }
 
   addStory(): void {
@@ -109,21 +108,13 @@ export class SwimlaneComponent implements OnInit {
   }
 
   getChartSubmit() {
-    console.log("current board id: " + this.currentBoardId);
-    this.chartService.getChart(this.currentBoardId).subscribe(
-      res => {
-        console.log("Get chart success!", res);
-        //places reponse of task-manager-service/getAllTasks/{storyId} into task array
-        localStorage.setItem('currentChart', JSON.stringify(res));
-        // this.chart = res;
-      }
-    )
-
+    //probably could delete this
+    console.log("getChartSubmit current board id: " + this.currentBoardId);
+    console.log("getChartSubmit has been clicked!");
   }
 
   taskSubmit() {
     console.log("Creating new task: ", (this.task).description);
-    // this.task.storyId = this.story.storyId;
     this.taskService.createTask(this.task).subscribe(
       res => {
           console.log("Create Task Success!", res);

@@ -11,7 +11,7 @@
   </div>
 </div>
 <ul class="boards" style="position:relative;">
-  <li *ngFor="let board of boards | orderBy:['boardId', 'boardName']" (click)="Select(board)" [class.selected]="board === selectedBoard" style="width:400px;height:100px">
+  <li *ngFor="let board of boards | orderBy:['boardId', 'boardName']" (click)="Select(board, board.boardId)" [class.selected]="board === selectedBoard" style="width:400px;height:100px">
     <span class="board-element">
       <span class="badge">{{board.boardId}}</span>
       <strong>{{board.boardName}}</strong>
