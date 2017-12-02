@@ -104,7 +104,17 @@ export class SwimlaneComponent implements OnInit {
           console.log("Swimlane has changed ");
           // this.router.navigate(['/detail', this.currentBoardId]);
           this.displayAllStories();
+          this.loadChart(this.currentBoardId); //this will update the chart when a story is moved
       });
+  }
+
+  loadChart(selectedBoardId){
+    this.chartService.getChart(selectedBoardId).subscribe(
+      res => {
+        console.log("loadChart function success!", res);
+        localStorage.setItem('currentChart', JSON.stringify(res));
+      }
+    )
   }
 
   getChartSubmit() {
