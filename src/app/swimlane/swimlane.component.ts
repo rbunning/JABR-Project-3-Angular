@@ -54,13 +54,11 @@ export class SwimlaneComponent implements OnInit {
   
   task: Task = {
     taskId:    null,
-    storyId: null,  //change this later to import Story and get storyId from there
+    storyId: null,  
     description : ''
   }
 
-  modalComponent: ModalComponent;
-
-  @Input() _tasksArray: Task[];
+  _tasksArray: Task[];
 
   constructor(
     private zone: NgZone,
@@ -102,25 +100,27 @@ export class SwimlaneComponent implements OnInit {
           console.log("Swimlane has changed ");
           // this.router.navigate(['/detail', this.currentBoardId]);
           this.displayAllStories();
+          this.loadChart(this.currentBoardId); //this will update the chart when a story is moved
       });
   }
 
-  getChartSubmit() {
-    console.log("current board id: " + this.currentBoardId);
-    this.chartService.getChart(this.currentBoardId).subscribe(
+  loadChart(selectedBoardId){
+    this.chartService.getChart(selectedBoardId).subscribe(
       res => {
-        console.log("Get chart success!", res);
-        //places reponse of task-manager-service/getAllTasks/{storyId} into task array
+        console.log("loadChart function success!", res);
         localStorage.setItem('currentChart', JSON.stringify(res));
-        // this.chart = res;
       }
     )
+  }
 
+  getChartSubmit() {
+    //probably could delete this
+    console.log("getChartSubmit current board id: " + this.currentBoardId);
+    console.log("getChartSubmit has been clicked!");
   }
 
   taskSubmit() {
     console.log("Creating new task: ", (this.task).description);
-    // this.task.storyId = this.story.storyId;
     this.taskService.createTask(this.task).subscribe(
       res => {
           console.log("Create Task Success!", res);
@@ -144,28 +144,12 @@ export class SwimlaneComponent implements OnInit {
   */
   
   //This will have a modal display the story name, story description, all the current tasks for the story, and allow the creation of a new story
-  displayTasks(currentStoryId, currentStoryName, currentStoryDescription) {
+  displayTasks(currentStoryId, currentStoryName, currentStoryDescription, currentStoryPoints) {
+    localStorage.setItem('currentStoryId', currentStoryId);
     let disposable = this.dialogService.addDialog(ModalComponent, {
         title: currentStoryName,  //test this
-        message: currentStoryDescription
+        message: "Story Points: " + currentStoryPoints
       } )
-        //Display tasks here
-        console.log("Get tasks by this ID: " + currentStoryId);
-              this.taskService.getTasks(currentStoryId).subscribe(
-                res => {
-                  console.log("Get tasks success!", res);
-                  //places reponse of task-manager-service/getAllTasks/{storyId} into task array
-                  // this._tasksArray = res;
-                  // localStorage.removeItem('currentTasks');
-                  // this.modalComponent._tasksArray = res;
-                  // this.modalComponent.showCurrentTasks(this._tasksArray);
-                  localStorage.setItem('currentTasks', JSON.stringify(res));
-                  localStorage.setItem('currentStoryId', currentStoryId);
-                  console.log("Current tasks: " + JSON.stringify(res) );
-                  
-                } 
-              )
-  
 }
   
 }

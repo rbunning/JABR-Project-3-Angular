@@ -10,7 +10,7 @@ import { SwimlaneService } from '../swimlane/swimlane.service';
   styleUrls: ['./create-story.component.css']
 })
 export class CreateStoryComponent implements OnInit {
-
+  
   private currentBoard= JSON.parse(localStorage.getItem('currentBoard'));
   currentBoardId = this.currentBoard.boardId;
 
