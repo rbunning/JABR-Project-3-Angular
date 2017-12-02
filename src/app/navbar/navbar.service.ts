@@ -12,3 +12,4 @@ export class NavbarService {
 
   toggle() { this.visible = !this.visible; }
 }
+
