@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comments.component.css']
 })
 export class CommentsComponent implements OnInit {
+  private currentBoard = JSON.parse(localStorage.getItem('currentBoard'));
+  currentBoardId = this.currentBoard.boardId;
 
   constructor() { }
 

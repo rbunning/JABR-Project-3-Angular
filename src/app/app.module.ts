@@ -29,6 +29,7 @@ import { TaskService } from './task/task.service';
 import { ChartComponent } from './chart/chart.component';
 import { ChartsModule } from 'ng2-charts';
 import { CreateStoryService } from './create-story/create-story.service';
+import { CommentsService } from './comments/comments.service';
 
 import { AddBoardComponent } from './add-board/add-board.component';
 import { OrderByPipe } from './boards/order-by.pipe';
@@ -93,7 +94,7 @@ const routes: Routes = [
     ModalComponent
   ],
 
-  providers: [DatePipe, UserService, AddUserService, BoardsService, SwimlaneService, NavbarService, TaskService, CreateStoryService, ChartService, ModalService],
+  providers: [DatePipe, UserService, AddUserService, BoardsService, SwimlaneService, NavbarService, TaskService, CreateStoryService, ChartService, ModalService, CommentsService],
 
   bootstrap: [AppComponent]
 })

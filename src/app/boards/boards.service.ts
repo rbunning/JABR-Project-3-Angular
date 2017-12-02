@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-import { Board } from './board.interface';
-import { NewBoard } from './newBoard.interface';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { Board } from './board.interface';
+import { NewBoard } from './newBoard.interface';
+
 import { DeleteBoard } from './delete-board.interface';
 
 @Injectable()
