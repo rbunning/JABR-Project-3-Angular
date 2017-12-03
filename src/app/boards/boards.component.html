@@ -37,7 +37,7 @@
       <span class="badge">{{board.boardId}}</span>
       <strong>{{board.boardName}}</strong>
     </span>
-    <button class="btn btn-md delete-button" (click)="deleteBoard(board.boardId)">Delete</button>
+    <button *ngIf="boardsService.visible" class="btn btn-md delete-button" (click)="deleteBoard(board.boardId)">Delete</button>
   </li>
 </ul>
 

@@ -50,8 +50,16 @@ export class BoardsComponent implements OnInit {
     private chartService: ChartService) {
      }
 
+  roleId = JSON.parse(localStorage.getItem('currentUser')).roleType.roleId;
+
   ngOnInit() {
     this.displayAllBoards();
+
+    if( this.roleId != 2) {
+      this.boardsService.hide();
+    } else {
+      this.boardsService.show();
+    }
   }
 
   Select(board: Board, boardId): void {
