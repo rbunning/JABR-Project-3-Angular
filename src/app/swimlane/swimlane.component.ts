@@ -54,7 +54,7 @@ export class SwimlaneComponent implements OnInit {
 
   task: Task = {
     taskId:    null,
-    storyId: null,  
+    storyId: null,
     description : ''
   }
 
@@ -72,8 +72,16 @@ export class SwimlaneComponent implements OnInit {
     private modalService: ModalService
     ) { }
 
+  roleId = JSON.parse(localStorage.getItem('currentUser')).roleType.roleId;
+
   ngOnInit() {
     this.displayAllStories();
+
+    if( this.roleId != 2) {
+      this.swimlaneService.hide();
+    } else {
+      this.swimlaneService.show();
+    }
   }
 
   addStory(): void {

@@ -16,9 +16,9 @@ export class SwimlaneService {
   private static readonly MOVE_STORY_URL ='/story-manager-service/moveStoryLane';
 
   // This setup the header information for the request.
-  private headers = new Headers({ 
+  private headers = new Headers({
     "Content-Type": "application/json",
-    'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('currentUsertoken')).token 
+    'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('currentUsertoken')).token
   });
   private options = new RequestOptions({ headers: this.headers });
 
@@ -39,7 +39,16 @@ export class SwimlaneService {
 
   }
 
+  visible: boolean;
+
+  hide() { this.visible = false; }
+
+  show() { this.visible = true; }
+
+  toggle() { this.visible = !this.visible; }
+
   constructor(
     private http: Http,
-    private httpClient: HttpClient) { }
+    private httpClient: HttpClient) {
+    this.visible = false; }
 }
