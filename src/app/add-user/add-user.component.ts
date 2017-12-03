@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AddUserService } from './add-user.service';
 import { User } from './user.interface';
 import { Router } from '@angular/router';
+import { AddUser } from './add-user.interface';
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
@@ -15,13 +16,18 @@ export class AddUserComponent implements OnInit {
   usersOnBoard: User[];
   usersNotOnBoard: User[];
 
+  addUser: AddUser = {
+    boardId: null,
+    scrumUserId: null
+  }
+
   constructor(
     private addUserService: AddUserService,
     private router: Router) { }
 
   ngOnInit() {
-    this.getUsersForBoard();
-    this.getUsersNotOnBoard();
+    this.displayUsers();
+    console.log(this.currentBoardId);
   }
 
   getUsersForBoard(): void {
@@ -38,6 +44,32 @@ export class AddUserComponent implements OnInit {
         this.usersNotOnBoard = res;
         console.log(this.usersNotOnBoard);
       })
+  }
+
+  displayUsers(): void{
+    this.getUsersForBoard();
+    this.getUsersNotOnBoard();
+  }
+
+  addUserSubmit(id: number): void {
+
+    this.addUser.scrumUserId = id;
+    this.addUser.boardId = this.currentBoardId;
+    console.log("id ", this.addUser.boardId);
+    console.log("scrum id", this.addUser.scrumUserId);
+    if(this.addUser.scrumUserId == null) {
+      window.alert("Scrum User Id cannot be empty");
+    } else {
+      this.addUserService.addUserToBoard(this.addUser).subscribe(
+        res => {
+          this.displayUsers();
+        }
+      );
+    }
+  }
+
+  backToStories(): void {
+    this.router.navigate(['/detail', this.currentBoardId]);
   }
 
 }

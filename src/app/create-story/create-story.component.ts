@@ -51,6 +51,6 @@ export class CreateStoryComponent implements OnInit {
   }
 
   backToStories(): void {
-
+    this.router.navigate(['/detail', this.currentBoardId]);
   }
 }

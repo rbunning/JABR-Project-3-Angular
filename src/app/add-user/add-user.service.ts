@@ -29,9 +29,9 @@ export class AddUserService {
                     .map(response => <User[]> response.json());
   }
 
-  addUserToBoard(addUser: AddUser): Observable<any> {
+  addUserToBoard(user: AddUser): Observable<any> {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.httpClient.post(AddUserService.ADD_USER_TO_BOARD, addUser, {headers: headers});
+    return this.httpClient.post(AddUserService.ADD_USER_TO_BOARD, user, {headers: headers});
   }
 
 }

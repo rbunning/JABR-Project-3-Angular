@@ -37,7 +37,6 @@ import { SwimlaneComponent } from './swimlane/swimlane.component';
 import { SwimlaneService } from './swimlane/swimlane.service';
 import { ModalComponent } from './modal/modal.component';
 import { ModalService } from './modal/modal.service';
-import { CommentsComponent } from './comments/comments.component';
 import { AddUserComponent } from './add-user/add-user.component';
 
 
@@ -76,7 +75,6 @@ const routes: Routes = [
     OrderByPipe,
     SwimlaneComponent,
     ModalComponent,
-    CommentsComponent,
     AddUserComponent
   ],
   imports: [

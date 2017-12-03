@@ -6,7 +6,7 @@
   </div>
 
   <button style="float: right;" type="button" class="btn btn-primary" (click)="addStory()">Add a Story</button>
-  <button style="float: right;" type="button" class="btn btn-primary" (click)="addUser()">Invite an User</button>
+  <button style="float: right;" type="button" class="btn btn-primary">Add User</button>
   <button style="float: right;" (click)="getChartSubmit()" routerLink="/chart" type="button" class="btn btn-primary">View Chart</button>
 
   <br> <br>
@@ -29,12 +29,12 @@
                 <div *ngIf="story.laneTypeId == lane.laneId" >
                   <tr>
                     <td *ngIf="i > 0">
-                      <button style="float: left" type="button" class="btn-sm btn-info" (click)="switchLane(story,story.storyId,i-1)">
+                      <button style="float: left" type="button" class="btn-sm btn-info" (click)="switchLane(story,story.storyId,i-1)"><
                         </button>
                     </td>
                     <td>
                       <div id="userStories" class="story">
-                        <div (click)="displayTasks(story.storyId, story.storyName, story.storyDesc)" class="story-block">
+                        <div (click)="displayTasks(story.storyId, story.storyName, story.storyDesc, story.storyPoints)" class="story-block">
                           <div class="alert alert-info" role="alert"><p id="boardName">Points: {{story.storyPoints}}</p> </div>
                           <h6 class="text-center" data-toggle="modal" data-target=".story-modal-sm"><strong id="boardName">{{story.storyName}}</strong></h6>
                           <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
@@ -47,13 +47,7 @@
                           </div>
                         </div>
                         <div>
-                        <!-- Add New Task works, but storyId is default to 0, will fix when story is in swimlane -->
-
                           <button (click) = "deleteStory(story.storyId)" class="btn btn-sm btn-danger btn-block">Delete Story</button>
-                          <!-- <input id="description" #description (click) = "description.value = null" [(ngModel)]="task.description" name="description" type="text" class="form-control" placeholder="New Task"> -->
-                              <!-- Have story id as a parameter in taskSubmit   -->
-                          <!-- <button (click) = "taskSubmit()" class="btn btn-sm btn-primary btn-block">Add New Task</button>
-                          <button (click) = "deleteStory(story.storyId)" class="btn btn-sm btn-danger btn-block">Delete Story</button> -->
                         </div>
                       </div>
                     </td>
@@ -73,6 +67,3 @@
   </div>
 </div>
 <!-- End of Swimlane -->
-
-
-

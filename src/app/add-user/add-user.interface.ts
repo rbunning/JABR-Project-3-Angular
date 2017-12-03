@@ -1,4 +1,5 @@
 export interface AddUser {
-  boardId: number,
-  scrumUserId: number
+   boardId: number;
+   scrumUserId: number;
 }
+

@@ -77,7 +77,7 @@ export class BoardsComponent implements OnInit {
     this.name = str;
     this.gotoDetail();
     console.log("current board: " + JSON.stringify(board));
-    localStorage.setItem('currentBoard', JSON.stringify(this.selectedBoard));
+    localStorage.setItem('currentBoard', JSON.stringify(board));
   }
 
   gotoDetail() {
