@@ -34,20 +34,27 @@ export class ModalComponent extends DialogComponent<ModalModel, boolean> impleme
   }
 
   ngOnInit() {
-    this._tasksArray = JSON.parse(localStorage.getItem('currentTasks'));
-    // this._tasksArray = this.modalService._tasksArray; 
-    // console.log("Modal tasks: " + this._tasksArray);
-    // // localStorage.removeItem('currentTasks');
+    this.showCurrentTasks();
+    
   }
 
-  showCurrentTasks(currentTasks){
-    return this._tasksArray = currentTasks;
+  showCurrentTasks() {
+    this.taskService.getTasks(localStorage.getItem('currentStoryId')).subscribe(
+      res => {
+        console.log("Get tasks success!", res);
+        //places reponse of task-manager-service/getAllTasks/{storyId} into task array
+        this._tasksArray = res;
+      }
+    )
  }
 
+//  have taskDescription marked as complete when clicked
+ markComplete(taskDescription) {
+  
+ }
   confirm() {
     // we set dialog result as true on click on confirm button, 
     // then we can get dialog result from caller code 
-    // localStorage.removeItem('currentTasks');
     this.result = true;
     this.close();
   }
@@ -57,13 +64,13 @@ export class ModalComponent extends DialogComponent<ModalModel, boolean> impleme
   //create/add a new task
   taskSubmit() {
     console.log("Creating new task: ", (this.task).description);
-    // this.task.storyId = this.story.storyId;
     this.task.storyId = JSON.parse(localStorage.getItem('currentStoryId'));
     console.log("New task storyId: ", (this.task.storyId));
     this.taskService.createTask(this.task).subscribe(
       res => {
           console.log("Create Task Success!", res);
         //immediately do a getTasks to refresh the list? 
+        this.showCurrentTasks();
       });
   }
 
