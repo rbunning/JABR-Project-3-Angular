@@ -27,6 +27,6 @@ export class TaskService {
     // will change this later to simply grab the storyid of the story in the lane
     getTasks(storyIdInput): Observable<any> {
         console.log('getTasks storyID = ' + storyIdInput);
-        return this.http.get(TaskService.getAllTasksByStoryIdURL + storyIdInput,  this.options);
+        return this.http.get(TaskService.getAllTasksByStoryIdURL + storyIdInput,  this.options).map(response => <Task[]> response.json());
     }
 }
