@@ -27,6 +27,10 @@ export class NavbarComponent implements OnInit {
     }
   }
 
+  logout(): void {
+    localStorage.removeItem('currentUsertoken');
+  }
+
   // getChartSubmit() {
 
   //   console.log("current board id: " + JSON.parse(localStorage.getItem('currentBoard')).boardId);

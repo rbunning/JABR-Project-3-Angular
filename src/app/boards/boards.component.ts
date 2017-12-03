@@ -70,8 +70,6 @@ export class BoardsComponent implements OnInit {
 
   scrumUserId = JSON.parse(localStorage.getItem("currentUser")).scrumUserId;
 
-  roleId = JSON.parse(localStorage.getItem('currentUser')).roleType.roleId;
-
   displayAllBoards() {
     this.boardsService.getAllBoards().subscribe(
       res => {
