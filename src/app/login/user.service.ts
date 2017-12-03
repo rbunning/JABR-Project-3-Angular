@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { User } from './user.interface';
 import { Headers, Http, RequestOptions} from '@angular/http';
 import { Base64 } from 'js-base64';
+import 'rxjs/add/operator/delay';
 
 @Injectable()
 export class UserService {
@@ -58,7 +59,7 @@ export class UserService {
     params.append('grant_type','password');
 
     // Send the HTTP POST request.
-    this.http.post(UserService.UATH_URL, params.toString(), this.options)
+    this.http.post(UserService.UATH_URL, params.toString(), this.options).delay(4000)
       .map(res => res.json()).subscribe(response => {
 
         // Adds the token to the local storage for reuse.

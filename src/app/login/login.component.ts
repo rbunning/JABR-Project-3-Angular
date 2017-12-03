@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from './user.interface';
 import { UserService } from './user.service';
@@ -33,5 +33,4 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('currentUser', JSON.stringify(res));
     });
   }
-
 }
