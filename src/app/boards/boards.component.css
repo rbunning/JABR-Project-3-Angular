@@ -4,6 +4,13 @@
   color: white;
 }
 
+div.relative {
+    position: sticky;
+    float: right;
+    width: 800px;
+    height: 1000px;
+}
+
 #boardName {
   font-family: 'Dosis', sans-serif;
 }

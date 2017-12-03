@@ -51,7 +51,7 @@ export class SwimlaneComponent implements OnInit {
 
 
   stories: Story[];
-  
+
   task: Task = {
     taskId:    null,
     storyId: null,  
@@ -80,6 +80,10 @@ export class SwimlaneComponent implements OnInit {
     this.router.navigateByUrl("/add-story");
   }
 
+  addUser(): void {
+    this.router.navigateByUrl("/add-user");
+  }
+
   displayAllStories(): void {
     this.swimlaneService.getAllStories(this.currentBoardId).subscribe(
       res => {
@@ -87,7 +91,7 @@ export class SwimlaneComponent implements OnInit {
         console.log("Stories: ", this.stories);
         localStorage.setItem('curentStories', JSON.stringify(res));
       })
-      
+
   }
 
 
@@ -138,11 +142,11 @@ export class SwimlaneComponent implements OnInit {
 
   }
   /*Add this or change this to display tasks function
-    clear out unneccessary modal stuff from example 
-    make sure modal displays current Story name, Story Description, All current tasks, 
+    clear out unneccessary modal stuff from example
+    make sure modal displays current Story name, Story Description, All current tasks,
            ability to create a new task in modal and hopefully have it show immediately without having to reload or close modal
   */
-  
+
   //This will have a modal display the story name, story description, all the current tasks for the story, and allow the creation of a new story
   displayTasks(currentStoryId, currentStoryName, currentStoryDescription, currentStoryPoints) {
     localStorage.setItem('currentStoryId', currentStoryId);
@@ -150,6 +154,7 @@ export class SwimlaneComponent implements OnInit {
         title: currentStoryName,  //test this
         message: "Story Points: " + currentStoryPoints
       } )
+
 }
-  
+
 }

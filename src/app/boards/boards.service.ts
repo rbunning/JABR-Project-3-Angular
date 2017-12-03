@@ -6,6 +6,9 @@ import { Board } from './board.interface';
 import { NewBoard } from './newBoard.interface';
 import { Headers, Http, RequestOptions  } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { Board } from './board.interface';
+import { NewBoard } from './newBoard.interface';
+
 import { DeleteBoard } from './delete-board.interface';
 
 @Injectable()

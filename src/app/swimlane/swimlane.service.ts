@@ -11,6 +11,7 @@ import { DeleteStory } from './delete-story.interface';
 export class SwimlaneService {
 
   private GET_ALL_STORIES = "/story-manager-service/allboardStories/";
+  private ADD_USER_TO_BOARD = "/user-service/addUserToBoard"
   private static readonly DELETE_STORY_URL = "/story-manager-service/deleteStory/";
   private static readonly MOVE_STORY_URL ='/story-manager-service/moveStoryLane';
 
@@ -32,6 +33,10 @@ export class SwimlaneService {
 
   deleteStory(story: DeleteStory): Observable<any> {
     return this.http.post(SwimlaneService.DELETE_STORY_URL, story, this.options);
+  }
+
+  addUserToBoard():void {
+
   }
 
   constructor(
