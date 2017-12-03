@@ -11,34 +11,28 @@ export class CommentsService {
 
   private GET_COMMENTS = '/board-comment-service/getCommentsForBoard/';
 
-  private static readonly = '/board-comment-service/newComment';
+  private static readonly ADD_COMMENT = '/board-comment-service/newComment';
 
   getCommentsForBoard(boardId: number) {
     return this.http.get(this.GET_COMMENTS + boardId)
                     .map(response => <Comment[]> response.json());
   }
 
-  addComment(comment: AddComment): void {
-
+  addComment(comment: AddComment): Observable<any> {
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.httpClient.post(CommentsService.ADD_COMMENT, comment, {headers: headers});
   }
 
+  visible: boolean;
 
-  // moveStoryLane(story: MoveStory): Observable<any> {
-  //   const headers = new HttpHeaders({'Content-Type': 'application/json'});
-  //   return this.httpClient.post(SwimlaneService.MOVE_STORY_URL, story, {headers: headers});
-  // }
+  hide() { this.visible = false; }
 
-  // deleteStory(story: DeleteStory): Observable<any> {
-  //   const headers = new HttpHeaders({'Content-Type': 'application/json'});
-  //   return this.httpClient.post(SwimlaneService.DELETE_STORY_URL, story, {headers: headers});
-  // }
-
-  // addUserToBoard():void {
-
-  // }
+  show() { this.visible = true; }
 
   constructor(
     private http: Http,
-    private httpClient: HttpClient){}
+    private httpClient: HttpClient){
+    this.visible = false;
+  }
 
 }

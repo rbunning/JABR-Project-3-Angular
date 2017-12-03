@@ -1,3 +1,15 @@
-<p>
-  comments works!
-</p>
+<!--  <div class="container">
+    <div class="jumbotron">
+      <div>
+        <h2>this is for comment section of <strong>{{selectedBoard.boardName}}</strong></h2> -->
+        <input class="form-control" id="name" [(ngModel)]="addComment.comment" name ="storyName" type="text" placeholder="Enter Comment Here">
+        <br>
+        <button class="btn btn-md btn-active" (click)="deleteBoard(board.boardId)"><strong>Add Comment</strong></button>
+        <ul class="comments">
+          <li *ngFor="let comment of comments">
+          <p>{{comment.comment}} by userId: {{comment.scrumUserId}}</p>
+          </li>
+        </ul>
+<!--       </div>
+    </div>
+  </div> -->

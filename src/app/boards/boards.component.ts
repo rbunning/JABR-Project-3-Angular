@@ -12,6 +12,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { OrderByPipe } from './order-by.pipe';
 import { DeleteBoard } from './delete-board.interface';
 
+import { CommentsService } from '../comments/comments.service';
+import { AddComment } from '../comments/add-comment.interface';
+import { Comment } from '../comments/comment.interface';
+
 @Component({
   selector: 'app-boards',
   templateUrl: './boards.component.html',
@@ -40,7 +44,9 @@ export class BoardsComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private boardsService: BoardsService) { }
+    private boardsService: BoardsService,
+    private commentsService: CommentsService) {
+     }
 
   ngOnInit() {
     this.displayAllBoards();
@@ -71,7 +77,7 @@ export class BoardsComponent implements OnInit {
     this.name = str;
     this.gotoDetail();
     console.log("current board: " + JSON.stringify(board));
-    localStorage.setItem('currentBoard', JSON.stringify(board));
+    localStorage.setItem('currentBoard', JSON.stringify(this.selectedBoard));
   }
 
   gotoDetail() {
@@ -96,6 +102,37 @@ export class BoardsComponent implements OnInit {
     this.boardsService.deleteBoard(this.deleteThisBoard).subscribe(
       res => {
         this.displayAllBoards();
+      });
+  }
+
+  //Display all comments fro one board
+  comments: Comment[];
+
+  addComment: AddComment = {
+    boardId: null,
+    scrumUserId: null,
+    comment: ''
+  }
+
+  viewComments(board: Board, id: number): void {
+    this.commentsService.show();
+    var num = id;
+    this.commentsService.getCommentsForBoard(num).subscribe(
+      res=> {
+        this.comments = res;
+        console.log("Display all comments", this.comments);
+      });
+  }
+
+  private currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  currentUserId = this.currentUser.scrumUserId;
+
+  newComment(id: number):void {
+    this.addComment.boardId = id;
+    this.addComment.scrumUserId = this.currentUserId;
+    this.commentsService.addComment(this.addComment).subscribe(
+      res => {
+        this.viewComments(this.selectedBoard, id);
       });
   }
 }

@@ -8,22 +8,26 @@
       "{{selectedBoard.boardName}}" is selected
     </h2>
     <button (click)="onSelect(selectedBoard, selectedBoard.boardId, selectedBoard.boardName)" id="boardName">View Details</button>
+    <button (click)="viewComments(selectedBoard, selectedBoard.boardId)" id="boardName">View Comments</button>
   </div>
 </div>
-<div class="relative" *ngIf="selectedBoard">
+<div class="relative" *ngIf="commentsService.visible">
   <div class="container">
     <div class="jumbotron">
       <div>
-        <h2>this is for comment section of <strong>{{selectedBoard.boardName}}</strong></h2>
-        <button class="btn btn-md btn-active" (click)="deleteBoard(board.boardId)"><strong>Add Comment</strong></button>
-        <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent non augue risus. Integer sagittis quam eu lorem dignissim ultricies. Fusce a erat turpis. Duis venenatis imperdiet metus non pharetra. Quisque varius odio felis. In hac habitasse platea dictumst. Vestibulum lacinia elementum ultrices. Ut fringilla velit vulputate blandit scelerisque. Phasellus condimentum, ligula ut cursus euismod, mi ex tristique ante, non placerat orci leo quis arcu. Curabitur hendrerit sollicitudin ornare. Nam in lacus tempor, iaculis nibh eget, congue ex. Cras est leo, feugiat quis facilisis at, mollis ac odio. Nunc efficitur faucibus tortor, sed molestie turpis tempus id. Aliquam non venenatis enim. Suspendisse potenti.
-
-      Proin ac lorem dignissim, eleifend magna porttitor, ultricies erat. Sed hendrerit condimentum felis. Praesent hendrerit tempor enim, vitae posuere nunc auctor ac. Sed non nibh sed magna tempor tempor non quis nisi. Suspendisse sed consequat turpis. Ut tincidunt lorem vitae lorem finibus, quis finibus libero dictum. Aenean ullamcorper nunc ante, sit amet varius erat ullamcorper vel. In hac habitasse platea dictumst. Vestibulum vitae dapibus nisi. Sed eu eros quis nibh lacinia luctus. Donec sollicitudin odio quis ultrices blandit. Sed nec ultrices eros. Aenean auctor varius magna vehicula rhoncus. Donec at iaculis lorem. Ut malesuada est in erat varius egestas.
-      </p>
+        <h2><strong>{{selectedBoard.boardName}}'s</strong> User Comments</h2>
+        <input class="form-control" id="name" [(ngModel)]="addComment.comment" name ="storyName" type="text" placeholder="Enter Comment Here">
+        <br>
+        <button class="btn btn-md btn-active" (click)="newComment(selectedBoard.boardId)"><strong>Add Comment</strong></button>
+        <ul class="comments">
+          <li *ngFor="let comment of comments">
+          <p>{{comment.comment}} by user with Id: {{comment.scrumUserId}}</p>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
+
 </div>
 
 
