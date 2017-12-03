@@ -21,7 +21,7 @@
         <button class="btn btn-md btn-active" (click)="newComment(selectedBoard.boardId)"><strong>Add Comment</strong></button>
         <ul class="comments">
           <li *ngFor="let comment of comments">
-          <p>{{comment.comment}} by user with commId: {{comment.scrumUserId}}</p>
+          <p>{{comment.comment}} by user with id: {{comment.scrumUserId}}</p>
           </li>
         </ul>
       </div>
