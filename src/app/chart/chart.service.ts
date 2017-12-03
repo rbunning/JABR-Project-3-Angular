@@ -19,7 +19,7 @@ export class ChartService {
     
     getChart(boardId): Observable<any> {
         console.log('getChart boardId = ' + boardId);
-        return this.http.get(ChartService.getChartByBoardIdURL + boardId,  this.options);
+        return this.http.get(ChartService.getChartByBoardIdURL + boardId,  this.options).map(response => <Chart[]> response.json());
     }
 
 
