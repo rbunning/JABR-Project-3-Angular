@@ -57,20 +57,12 @@ export class ChartComponent implements OnInit {
     // JSON.parse(localStorage.getItem('currentBoardId'));
     this.router.navigate(['/detail', JSON.parse(localStorage.getItem('currentBoardId'))]);
   }
-  // ****TODO: Add board name when chart is displayed
-  // displayCurrentChart() {
-  //   this.currentBoardId = JSON.parse(localStorage.getItem('currentBoardId'));
-  //   console.log("chart component current chart: " + this.chart);
-
-
-  // }
 
   /*
     Things to do for chart:
       change colors
       center chart
       have points end in 0
-      make sure a straight line shows for a board with no stories in done lane
       add a back button to go back to board details
       moving a story does not change the last move date, need to fix that to reflect change in chart
   */

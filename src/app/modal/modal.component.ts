@@ -48,6 +48,10 @@ export class ModalComponent extends DialogComponent<ModalModel, boolean> impleme
     )
  }
 
+//  have taskDescription marked as complete when clicked
+ markComplete(taskDescription) {
+  
+ }
   confirm() {
     // we set dialog result as true on click on confirm button, 
     // then we can get dialog result from caller code 
