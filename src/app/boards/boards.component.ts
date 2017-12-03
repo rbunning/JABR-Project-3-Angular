@@ -66,7 +66,6 @@ export class BoardsComponent implements OnInit {
     this.selectedBoard = board;
     this.loadChart(boardId);
     localStorage.setItem('currentBoardId',boardId); //delete this if loadChart works
-    console.log("Select function board ID: " + boardId); //delete this if loadChart works
   }
 
   scrumUserId = JSON.parse(localStorage.getItem("currentUser")).scrumUserId;
@@ -77,19 +76,16 @@ export class BoardsComponent implements OnInit {
     this.boardsService.getAllBoards().subscribe(
       res => {
         this.boards = res;
-        console.log("This is somethign for board ", this.boards);
         localStorage.setItem('currentBoards', JSON.stringify(res));
       })
-    console.log("Hello id", this.scrumUserId);
   }
 
   onSelect(board: Board, num: number, str: string): void {
-    console.log("This board: ", board);
+
     this.selectedBoard = board;
     this.id = num;
     this.name = str;
     this.gotoDetail();
-    console.log("current board: " + JSON.stringify(board));
     localStorage.setItem('currentBoard', JSON.stringify(board));
   }
 
@@ -97,7 +93,6 @@ export class BoardsComponent implements OnInit {
   loadChart(selectedBoardId){
     this.chartService.getChart(selectedBoardId).subscribe(
       res => {
-        console.log("loadChart function success!", res);
         localStorage.setItem('currentChart', JSON.stringify(res));
       }
     )
@@ -110,12 +105,10 @@ export class BoardsComponent implements OnInit {
   addBoard(): void {
 
     if(this.newBoard.boardName == '') {
-      console.error("You must have a name for board")
       window.alert("Board Name cannot be empty");
     } else {
         this.boardsService.addBoard(this.newBoard).subscribe(
           res => {
-            console.log("This is for testing: ", res);
           })
       }
   }
@@ -143,7 +136,6 @@ export class BoardsComponent implements OnInit {
     this.commentsService.getCommentsForBoard(num).subscribe(
       res=> {
         this.comments = res;
-        console.log("Display all comments", this.comments);
       });
   }
 

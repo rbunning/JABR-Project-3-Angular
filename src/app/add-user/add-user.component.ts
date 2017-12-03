@@ -27,14 +27,12 @@ export class AddUserComponent implements OnInit {
 
   ngOnInit() {
     this.displayUsers();
-    console.log(this.currentBoardId);
   }
 
   getUsersForBoard(): void {
     this.addUserService.getUsersForBoard(this.currentBoardId).subscribe(
       res => {
         this.usersOnBoard = res;
-        console.log(this.usersOnBoard);
       });
   }
 
@@ -42,7 +40,6 @@ export class AddUserComponent implements OnInit {
     this.addUserService.getUsersNotOnBoard(this.currentBoardId).subscribe(
       res => {
         this.usersNotOnBoard = res;
-        console.log(this.usersNotOnBoard);
       })
   }
 
@@ -55,8 +52,6 @@ export class AddUserComponent implements OnInit {
 
     this.addUser.scrumUserId = id;
     this.addUser.boardId = this.currentBoardId;
-    console.log("id ", this.addUser.boardId);
-    console.log("scrum id", this.addUser.scrumUserId);
     if(this.addUser.scrumUserId == null) {
       window.alert("Scrum User Id cannot be empty");
     } else {

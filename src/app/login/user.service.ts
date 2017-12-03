@@ -25,15 +25,15 @@ export class UserService {
 
   //Inject User interface to user, using Observable for async data. It's a normal post request.
   loginUser(user: User): Observable<any> {
-    console.log(user.scrumUserUsername + ' ' + user.scrumUserPassword);
+    // console.log(user.scrumUserUsername + ' ' + user.scrumUserPassword);
 
     // Calls the authenticate() method to get a token for Authentication.
-    this.authenticate(user); 
+    this.authenticate(user);
 
     // This setup the header information for the request.
-    this.headersOauth = new Headers({ 
+    this.headersOauth = new Headers({
       "Content-Type": "application/json",
-      'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('currentUsertoken')).token 
+      'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('currentUsertoken')).token
     });
     this.options = new RequestOptions({ headers: this.headersOauth });
 
@@ -43,7 +43,7 @@ export class UserService {
 
   authenticate(user: User) {
     this.url = "http://localhost:8765/user-service/oauth/token";
-    
+
     // This sets up the header information for the request.
     this.headerslogin = new Headers({
       "Content-Type": "application/x-www-form-urlencoded",
@@ -54,20 +54,20 @@ export class UserService {
     // This sets up the body information for the request.
     let params = new URLSearchParams();
     params.append('username',user.scrumUserUsername);
-    params.append('password',user.scrumUserPassword);    
+    params.append('password',user.scrumUserPassword);
     params.append('grant_type','password');
-    
+
     // Send the HTTP POST request.
     this.http.post(UserService.UATH_URL, params.toString(), this.options)
       .map(res => res.json()).subscribe(response => {
-        
+
         // Adds the token to the local storage for reuse.
         localStorage.setItem('currentUsertoken', JSON.stringify(
           {userName:user.scrumUserUsername, token: response.access_token }));
-          
-        console.log(localStorage.getItem('currentUsertoken'));
+
+        // console.log(localStorage.getItem('currentUsertoken'));
       }, (error) => {
-        console.log('error in', error);
+        // console.log('error in', error);
       });
   }
 }

@@ -25,10 +25,10 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("something happened?", (this.user).scrumUserUsername);
+    // console.log("something happened?", (this.user).scrumUserUsername);
     this.userService.loginUser(this.user).subscribe(
       res => {
-        console.log('Login successful -POST ', res);
+        // console.log('Login successful -POST ', res);
         this.router.navigateByUrl('/home');
         localStorage.setItem('currentUser', JSON.stringify(res));
     });

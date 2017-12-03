@@ -52,7 +52,7 @@ export class BoardsService {
   //Retrieve a single board based on selection
   getBoard(scrumUserId: number): Observable<any> {
     const headers = new HttpHeaders({'Content-Type': 'text/plain'});
-    console.log("scrumUserId: ", scrumUserId);
+
     return this.http.post(BoardsService.BOARDS_URL, scrumUserId, this.options);
   }
 
@@ -63,7 +63,6 @@ export class BoardsService {
   }
 
   private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
+      return Promise.reject(error.message || error);
   }
 }

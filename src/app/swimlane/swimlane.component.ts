@@ -96,7 +96,7 @@ export class SwimlaneComponent implements OnInit {
     this.swimlaneService.getAllStories(this.currentBoardId).subscribe(
       res => {
         this.stories = res;
-        console.log("Stories: ", this.stories);
+        // console.log("Stories: ", this.stories);
         localStorage.setItem('curentStories', JSON.stringify(res));
       })
 
@@ -109,7 +109,7 @@ export class SwimlaneComponent implements OnInit {
 
     this.swimlaneService.moveStoryLane(this.story).subscribe(
       res => {
-          console.log("Swimlane has changed ");
+          // console.log("Swimlane has changed ");
           // this.router.navigate(['/detail', this.currentBoardId]);
           this.displayAllStories();
           this.loadChart(this.currentBoardId); //this will update the chart when a story is moved
@@ -119,7 +119,7 @@ export class SwimlaneComponent implements OnInit {
   loadChart(selectedBoardId){
     this.chartService.getChart(selectedBoardId).subscribe(
       res => {
-        console.log("loadChart function success!", res);
+        // console.log("loadChart function success!", res);
         localStorage.setItem('currentChart', JSON.stringify(res));
       }
     )
@@ -127,15 +127,15 @@ export class SwimlaneComponent implements OnInit {
 
   getChartSubmit() {
     //probably could delete this
-    console.log("getChartSubmit current board id: " + this.currentBoardId);
-    console.log("getChartSubmit has been clicked!");
+    // console.log("getChartSubmit current board id: " + this.currentBoardId);
+    // console.log("getChartSubmit has been clicked!");
   }
 
   taskSubmit() {
     console.log("Creating new task: ", (this.task).description);
     this.taskService.createTask(this.task).subscribe(
       res => {
-          console.log("Create Task Success!", res);
+          // console.log("Create Task Success!", res);
 
       });
   }
@@ -144,7 +144,7 @@ export class SwimlaneComponent implements OnInit {
     this.deleteThisStory.storyId = id;
     this.swimlaneService.deleteStory(this.deleteThisStory).subscribe(
       res => {
-        console.log("Delete Story Proceed");
+        // console.log("Delete Story Proceed");
         this.displayAllStories();
       });
 
