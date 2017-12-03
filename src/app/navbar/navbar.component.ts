@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private navbarService: NavbarService,
-    private chartService: ChartService, 
+    private chartService: ChartService,
     private router: Router) { }
 
   ngOnInit() {
@@ -27,8 +27,12 @@ export class NavbarComponent implements OnInit {
     }
   }
 
+  logout(): void {
+    localStorage.removeItem('currentUsertoken');
+  }
+
   // getChartSubmit() {
-    
+
   //   console.log("current board id: " + JSON.parse(localStorage.getItem('currentBoard')).boardId);
   //   console.log("Get chart by this boardID: " + JSON.parse(localStorage.getItem('currentBoard')).boardId);
   //   this.chartService.getChart(JSON.parse(localStorage.getItem('currentBoard')).boardId).subscribe(
@@ -41,7 +45,4 @@ export class NavbarComponent implements OnInit {
   //   )
 
   // }
-
-  
-
 }

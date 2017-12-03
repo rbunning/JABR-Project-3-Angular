@@ -16,6 +16,7 @@ import { UserService } from './login/user.service';
 import { BoardsService } from './boards/boards.service';
 import { NavbarService } from './navbar/navbar.service';
 import { ChartService } from './chart/chart.service';
+import { AddUserService } from './add-user/add-user.service';
 
 import { ScrumHomeComponent } from './scrum-home/scrum-home.component';
 import { TaskComponent } from './task/task.component';
@@ -28,6 +29,7 @@ import { TaskService } from './task/task.service';
 import { ChartComponent } from './chart/chart.component';
 import { ChartsModule } from 'ng2-charts';
 import { CreateStoryService } from './create-story/create-story.service';
+import { CommentsService } from './comments/comments.service';
 
 import { AddBoardComponent } from './add-board/add-board.component';
 import { OrderByPipe } from './boards/order-by.pipe';
@@ -35,6 +37,8 @@ import { SwimlaneComponent } from './swimlane/swimlane.component';
 import { SwimlaneService } from './swimlane/swimlane.service';
 import { ModalComponent } from './modal/modal.component';
 import { ModalService } from './modal/modal.service';
+import { AddUserComponent } from './add-user/add-user.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -44,7 +48,7 @@ const routes: Routes = [
   { path: 'home', redirectTo: 'boards', pathMatch: 'full'},
   { path: 'boards', component: BoardsComponent},
   { path: 'modal', component: ModalComponent},
-
+  { path: 'add-user', component: AddUserComponent },
   { path: 'add-board', component: AddBoardComponent},
   { path: 'detail/:id', component: BoardDetailComponent},
 
@@ -70,7 +74,8 @@ const routes: Routes = [
     AddBoardComponent,
     OrderByPipe,
     SwimlaneComponent,
-    ModalComponent
+    ModalComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
@@ -87,7 +92,7 @@ const routes: Routes = [
     ModalComponent
   ],
 
-  providers: [DatePipe, UserService, BoardsService, SwimlaneService, NavbarService, TaskService, CreateStoryService, ChartService, ModalService],
+  providers: [DatePipe, UserService, AddUserService, BoardsService, SwimlaneService, NavbarService, TaskService, CreateStoryService, ChartService, ModalService, CommentsService],
 
   bootstrap: [AppComponent]
 })
