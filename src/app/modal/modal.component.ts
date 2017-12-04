@@ -30,18 +30,18 @@ export class ModalComponent extends DialogComponent<ModalModel, boolean> impleme
 
   constructor(private taskService: TaskService, dialogService: DialogService, modalService: ModalService) {
     super(dialogService);
-    
+
   }
 
   ngOnInit() {
     this.showCurrentTasks();
-    
+
   }
 
   showCurrentTasks() {
     this.taskService.getTasks(localStorage.getItem('currentStoryId')).subscribe(
       res => {
-        console.log("Get tasks success!", res);
+        // console.log("Get tasks success!", res);
         //places reponse of task-manager-service/getAllTasks/{storyId} into task array
         this._tasksArray = res;
       }
@@ -50,16 +50,16 @@ export class ModalComponent extends DialogComponent<ModalModel, boolean> impleme
 
 //  have taskDescription marked as complete when clicked
  markComplete(taskDescription) {
-  
+
  }
   confirm() {
-    // we set dialog result as true on click on confirm button, 
-    // then we can get dialog result from caller code 
+    // we set dialog result as true on click on confirm button,
+    // then we can get dialog result from caller code
     this.result = true;
     this.close();
   }
-  
-  
+
+
 
   //create/add a new task
   taskSubmit() {
@@ -69,7 +69,7 @@ export class ModalComponent extends DialogComponent<ModalModel, boolean> impleme
     this.taskService.createTask(this.task).subscribe(
       res => {
           console.log("Create Task Success!", res);
-        //immediately do a getTasks to refresh the list? 
+        //immediately do a getTasks to refresh the list?
         this.showCurrentTasks();
       });
   }

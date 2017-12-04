@@ -11,15 +11,15 @@ export class ModalService {
     _tasksArray: Task[];
 
     private headers = new HttpHeaders({'Content-Type': 'application/json'});
-    
+
     constructor(private http: HttpClient){}
-    
+
     showCurrentTasks(currentTasks){
        return this._tasksArray = currentTasks;
     }
 
     getModalTasks(storyIdInput): Observable<any> {
-        console.log('getTasks storyID = ' + storyIdInput);
+        // console.log('getTasks storyID = ' + storyIdInput);
         return this.http.get(ModalService.getAllTasksByStoryIdURL + storyIdInput,  {headers: this.headers});
     }
 

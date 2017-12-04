@@ -51,10 +51,10 @@ export class SwimlaneComponent implements OnInit {
 
 
   stories: Story[];
-  
+
   task: Task = {
     taskId:    null,
-    storyId: null,  
+    storyId: null,
     description : ''
   }
 
@@ -72,22 +72,34 @@ export class SwimlaneComponent implements OnInit {
     private modalService: ModalService
     ) { }
 
+  roleId = JSON.parse(localStorage.getItem('currentUser')).roleType.roleId;
+
   ngOnInit() {
     this.displayAllStories();
+
+    if( this.roleId != 2) {
+      this.swimlaneService.hide();
+    } else {
+      this.swimlaneService.show();
+    }
   }
 
   addStory(): void {
     this.router.navigateByUrl("/add-story");
   }
 
+  addUser(): void {
+    this.router.navigateByUrl("/add-user");
+  }
+
   displayAllStories(): void {
     this.swimlaneService.getAllStories(this.currentBoardId).subscribe(
       res => {
         this.stories = res;
-        console.log("Stories: ", this.stories);
+        // console.log("Stories: ", this.stories);
         localStorage.setItem('curentStories', JSON.stringify(res));
       })
-      
+
   }
 
 
@@ -97,7 +109,7 @@ export class SwimlaneComponent implements OnInit {
 
     this.swimlaneService.moveStoryLane(this.story).subscribe(
       res => {
-          console.log("Swimlane has changed ");
+          // console.log("Swimlane has changed ");
           // this.router.navigate(['/detail', this.currentBoardId]);
           this.displayAllStories();
           this.loadChart(this.currentBoardId); //this will update the chart when a story is moved
@@ -107,7 +119,7 @@ export class SwimlaneComponent implements OnInit {
   loadChart(selectedBoardId){
     this.chartService.getChart(selectedBoardId).subscribe(
       res => {
-        console.log("loadChart function success!", res);
+        // console.log("loadChart function success!", res);
         localStorage.setItem('currentChart', JSON.stringify(res));
       }
     )
@@ -115,15 +127,15 @@ export class SwimlaneComponent implements OnInit {
 
   getChartSubmit() {
     //probably could delete this
-    console.log("getChartSubmit current board id: " + this.currentBoardId);
-    console.log("getChartSubmit has been clicked!");
+    // console.log("getChartSubmit current board id: " + this.currentBoardId);
+    // console.log("getChartSubmit has been clicked!");
   }
 
   taskSubmit() {
     console.log("Creating new task: ", (this.task).description);
     this.taskService.createTask(this.task).subscribe(
       res => {
-          console.log("Create Task Success!", res);
+          // console.log("Create Task Success!", res);
 
       });
   }
@@ -132,17 +144,17 @@ export class SwimlaneComponent implements OnInit {
     this.deleteThisStory.storyId = id;
     this.swimlaneService.deleteStory(this.deleteThisStory).subscribe(
       res => {
-        console.log("Delete Story Proceed");
+        // console.log("Delete Story Proceed");
         this.displayAllStories();
       });
 
   }
   /*Add this or change this to display tasks function
-    clear out unneccessary modal stuff from example 
-    make sure modal displays current Story name, Story Description, All current tasks, 
+    clear out unneccessary modal stuff from example
+    make sure modal displays current Story name, Story Description, All current tasks,
            ability to create a new task in modal and hopefully have it show immediately without having to reload or close modal
   */
-  
+
   //This will have a modal display the story name, story description, all the current tasks for the story, and allow the creation of a new story
   displayTasks(currentStoryId, currentStoryName, currentStoryDescription, currentStoryPoints) {
     localStorage.setItem('currentStoryId', currentStoryId);
@@ -150,6 +162,7 @@ export class SwimlaneComponent implements OnInit {
         title: currentStoryName,  //test this
         message: "Story Points: " + currentStoryPoints
       } )
+
 }
-  
+
 }

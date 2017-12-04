@@ -21,30 +21,30 @@ export class TaskComponent implements OnInit {
   _tasksArray: Task[];
 
   constructor(
-    private taskService: TaskService, 
+    private taskService: TaskService,
     private router: Router
   ) { }
 
   ngOnInit() {
-    
+
   }
 
   //this will be obsolete once it is implemented in swimlane component
   taskSubmit() {
-    console.log("Creating new task: ", (this.task).description);
+    // console.log("Creating new task: ", (this.task).description);
     this.taskService.createTask(this.task).subscribe(
       res => {
-          console.log("Create Task Success!", res);
+          // console.log("Create Task Success!", res);
       });
   }
 
   //this will be obsolete once it is implemented in swimlane component
   getTasksSubmit(storyIdInput) {
 
-    console.log("Get tasks by this ID: " + storyIdInput);
+    // console.log("Get tasks by this ID: " + storyIdInput);
     this.taskService.getTasks(storyIdInput).subscribe(
       res => {
-        console.log("Get tasks success!", res);
+        // console.log("Get tasks success!", res);
         //places reponse of task-manager-service/getAllTasks/{storyId} into task array
         this._tasksArray = res;
       }

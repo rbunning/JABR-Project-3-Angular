@@ -30,8 +30,6 @@ export class BoardDetailComponent implements OnInit {
       this.navigated = true;
       this.boardsService.getBoard(id).subscribe(
         res => {
-          console.log('log currentBoard', res);
-          // localStorage.setItem('currentBoard', JSON.stringify(res));
         })
     });
     this.callCurrentBoard();
@@ -40,7 +38,6 @@ export class BoardDetailComponent implements OnInit {
   callCurrentBoard(): void {
     this.boardsService.getBoard(this.currenBoardId).subscribe(
       res => {
-        console.log('log currentBoard call', res);
         localStorage.setItem('currentBoardForLanes', JSON.stringify(res));
       });
   }

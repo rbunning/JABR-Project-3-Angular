@@ -5,8 +5,8 @@
     </h2>
   </div>
 
-  <button style="float: right;" type="button" class="btn btn-primary" (click)="addStory()">Add a Story</button>
-  <button style="float: right;" type="button" class="btn btn-primary">Add User</button>
+  <button *ngIf="swimlaneService.visible" style="float: right;" type="button" class="btn btn-primary" (click)="addStory()">Add a Story</button>
+  <button *ngIf="swimlaneService.visible" style="float: right;" type="button" class="btn btn-primary" (click)="addUser()">Add User</button>
   <button style="float: right;" (click)="getChartSubmit()" routerLink="/chart" type="button" class="btn btn-primary">View Chart</button>
 
   <br> <br>
@@ -29,7 +29,7 @@
                 <div *ngIf="story.laneTypeId == lane.laneId" >
                   <tr>
                     <td *ngIf="i > 0">
-                      <button style="float: left" type="button" class="btn-sm btn-info" (click)="switchLane(story,story.storyId,i-1)">
+                      <button style="float: left" type="button" class="btn-sm btn-info" (click)="switchLane(story,story.storyId,i-1)"><
                         </button>
                     </td>
                     <td>
@@ -47,7 +47,7 @@
                           </div>
                         </div>
                         <div>
-                          <button (click) = "deleteStory(story.storyId)" class="btn btn-sm btn-danger btn-block">Delete Story</button>
+                          <button *ngIf="swimlaneService.visible" (click) = "deleteStory(story.storyId)" class="btn btn-sm btn-danger btn-block">Delete Story</button>
                         </div>
                       </div>
                     </td>
@@ -67,6 +67,3 @@
   </div>
 </div>
 <!-- End of Swimlane -->
-
-
-
