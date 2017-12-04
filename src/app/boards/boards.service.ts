@@ -39,6 +39,7 @@ export class BoardsService {
 
   //Retrieve all boards from current user
   getAllBoards() {
+    console.log(JSON.parse(localStorage.getItem('currentUsertoken')).token)
     return this.http.get(this.GET_ALL_BOARDS, this.options)
                     .map(response => <Board[]> response.json());
   }
