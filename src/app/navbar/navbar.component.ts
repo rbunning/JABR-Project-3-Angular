@@ -28,7 +28,8 @@ export class NavbarComponent implements OnInit {
   }
 
   logout(): void {
-    localStorage.removeItem('currentUsertoken');
+    // localStorage.removeItem('currentUsertoken');
+    localStorage.clear();
   }
 
   // getChartSubmit() {

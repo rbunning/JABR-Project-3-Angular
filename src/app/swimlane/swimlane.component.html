@@ -6,7 +6,7 @@
   </div>
 
   <button *ngIf="swimlaneService.visible" style="float: right;" type="button" class="btn btn-primary" (click)="addStory()">Add a Story</button>
-  <button *ngIf="swimlaneService.visible" style="float: right;" type="button" class="btn btn-primary">Add User</button>
+  <button *ngIf="swimlaneService.visible" style="float: right;" type="button" class="btn btn-primary" (click)="addUser()">Add User</button>
   <button style="float: right;" (click)="getChartSubmit()" routerLink="/chart" type="button" class="btn btn-primary">View Chart</button>
 
   <br> <br>
