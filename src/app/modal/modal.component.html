@@ -34,7 +34,7 @@
       <div class="add-task"><input id="description" #description (click) = "description.value = null" [(ngModel)]="task.description" name="description" type="text" class="form-control" placeholder="New Task">
        <button (click) = "taskSubmit()" class="btn btn-md btn-primary">Add New Task</button>
     </div>
-     
+      
 
      <div class="modal-footer">
        <button type="button" class="btn btn-primary" (click)="confirm()">OK</button>

@@ -2,19 +2,10 @@
 <script src="node_modules/chart.js/src/chart.js"></script>
 <div class="alert alert-info">
 
-  <!-- TODO: possibly add a tool tip to make it clear to user that this is clicked to go back -->
     <h2 class="text-center" style="float: center;" (click)="backToBoardDetails()">{{board.boardName}} </h2>
-    <span class="tooltiptext">Tooltip text</span>
 </div>
-  <div>
-    <!-- **TODO: Have this button display board details like number of stories done, etc... -->
-    <!-- <button style="float: right;" (click)="backToBoardDetails()" type="button" class="btn btn-primary">Board Details</button> -->
-    <!-- <button style="float: left;" (click)="backToBoardDetails()" type="button" class="btn btn-primary">Back</button> -->
-  </div>
 <div style="float: center;" class="row">
-    <!-- <div class="col-md-6"> -->
         <div style="float: center;">
-      <!-- <div style="display: block;"> -->
       <canvas  baseChart  height="600" width="1200"
                   [datasets]="chart.data.datasets"
                   [labels]="chart.data.labels"
@@ -26,6 +17,4 @@
                   (chartHover)="chartHovered($event)"
                   (chartClick)="chartClicked($event)"></canvas>
       </div>
-    <!-- </div> -->
-      <!-- <button (click)="randomize()">CLICK</button> -->
   </div>
