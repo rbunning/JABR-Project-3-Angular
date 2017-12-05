@@ -86,7 +86,7 @@ const routes: Routes = [
     ChartsModule,
     BootstrapModalModule,
     BootstrapModalModule.forRoot({container:document.body}),
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, {useHash: true})
   ],
   entryComponents: [
     ModalComponent

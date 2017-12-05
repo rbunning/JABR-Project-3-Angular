@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
-// import { ConfirmModel } from './modal.interface';
 import { Task } from '../task/task.interface'
 import { TaskService } from '../task/task.service';
 import { ModalService } from './modal.service';
@@ -22,7 +21,7 @@ export class ModalComponent extends DialogComponent<ModalModel, boolean> impleme
 
   task: Task = {
     taskId:    null,
-    storyId: null,  //change this later to import Story and get storyId from there
+    storyId: null,  
     description : ''
   }
 
@@ -41,20 +40,13 @@ export class ModalComponent extends DialogComponent<ModalModel, boolean> impleme
   showCurrentTasks() {
     this.taskService.getTasks(localStorage.getItem('currentStoryId')).subscribe(
       res => {
-        // console.log("Get tasks success!", res);
         //places reponse of task-manager-service/getAllTasks/{storyId} into task array
         this._tasksArray = res;
       }
     )
  }
 
-//  have taskDescription marked as complete when clicked
- markComplete(taskDescription) {
-
- }
   confirm() {
-    // we set dialog result as true on click on confirm button,
-    // then we can get dialog result from caller code
     this.result = true;
     this.close();
   }
@@ -69,7 +61,6 @@ export class ModalComponent extends DialogComponent<ModalModel, boolean> impleme
     this.taskService.createTask(this.task).subscribe(
       res => {
           console.log("Create Task Success!", res);
-        //immediately do a getTasks to refresh the list?
         this.showCurrentTasks();
       });
   }
