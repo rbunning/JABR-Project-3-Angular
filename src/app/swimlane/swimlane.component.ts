@@ -58,6 +58,8 @@ export class SwimlaneComponent implements OnInit {
     description : ''
   }
 
+  storiesLoaded: boolean;
+
   _tasksArray: Task[];
 
   constructor(
@@ -95,9 +97,13 @@ export class SwimlaneComponent implements OnInit {
   displayAllStories(): void {
     this.swimlaneService.getAllStories(this.currentBoardId).subscribe(
       res => {
-        this.stories = res;
-        // console.log("Stories: ", this.stories);
-        localStorage.setItem('curentStories', JSON.stringify(res));
+        if (res != null){
+          this.stories = res;
+          this.storiesLoaded = true;
+          localStorage.setItem('curentStories', JSON.stringify(res));
+        }else{
+          this.storiesLoaded = false;
+        }     
       })
 
   }

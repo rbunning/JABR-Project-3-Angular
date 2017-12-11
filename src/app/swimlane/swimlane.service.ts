@@ -24,7 +24,12 @@ export class SwimlaneService {
 
   getAllStories(boardId: number) {
     return this.http.get(this.GET_ALL_STORIES + boardId, this.options)
-                    .map(response => <Story[]> response.json());
+                    .map(response => <Story[]> response.json())
+                    .catch( (error: any) => {
+                      console.log("Error with getAllStories");
+                
+                      return Observable.throw( new Error("An error occurred with getAllStories: "+ error.status));
+                  });
   }
 
   moveStoryLane(story: MoveStory): Observable<any> {

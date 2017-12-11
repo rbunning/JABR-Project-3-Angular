@@ -14,6 +14,7 @@
             <thead class="thead-inverse">
             <tr>
                 <th class="text-center">Tasks</th>
+                
             </tr>
             </thead>
             <tbody>
@@ -22,6 +23,11 @@
             </tr>
             </tbody>
         </table>
+
+        <div [hidden] ="tasksLoaded" class="alert alert-danger text-center">
+            <h2 [hidden] ="tasksLoaded" class="text-center" id="getTasksError">Task service is temporarily unavailable</h2>
+          </div>
+        <!-- <div><label *ngIf="">This is label</label></div> -->
         
     </div>
      </div>

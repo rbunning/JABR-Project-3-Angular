@@ -11,11 +11,19 @@
     <button (click)="viewComments(selectedBoard, selectedBoard.boardId)" id="boardName">View Comments</button>
   </div>
 </div>
+
+<div [hidden] ="boardsLoaded" class="alert alert-danger text-center">
+  <h2 [hidden] ="boardsLoaded" class="text-center" id="getBoardsError">Boards service is temporarily unavailable</h2>
+</div>
+
 <div class="relative" *ngIf="commentsService.visible">
   <div class="container">
     <div class="jumbotron">
       <div>
         <h2><strong>{{selectedBoard.boardName}}'s</strong> User Comments</h2>
+        <div [hidden] ="commentsLoaded" class="alert alert-danger text-center">
+          <h2 [hidden] ="commentsLoaded" class="text-center" id="getCommentsError">Comments service is temporarily unavailable</h2>
+        </div>
         <input class="form-control" id="name" [(ngModel)]="addComment.comment" name ="storyName" type="text" placeholder="Enter Comment Here">
         <br>
         <button class="btn btn-md btn-active" (click)="newComment(selectedBoard.boardId)"><strong>Add Comment</strong></button>

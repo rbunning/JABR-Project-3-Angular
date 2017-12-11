@@ -27,6 +27,8 @@ export class ModalComponent extends DialogComponent<ModalModel, boolean> impleme
 
   _tasksArray: Task[];
 
+  tasksLoaded: boolean;
+
   constructor(private taskService: TaskService, dialogService: DialogService, modalService: ModalService) {
     super(dialogService);
 
@@ -34,14 +36,22 @@ export class ModalComponent extends DialogComponent<ModalModel, boolean> impleme
 
   ngOnInit() {
     this.showCurrentTasks();
-
   }
 
   showCurrentTasks() {
+    
     this.taskService.getTasks(localStorage.getItem('currentStoryId')).subscribe(
       res => {
         //places reponse of task-manager-service/getAllTasks/{storyId} into task array
-        this._tasksArray = res;
+        if (res != null){
+          console.log("getTasks success! " + res);
+          this._tasksArray = res;
+          this.tasksLoaded = true;
+        }else{
+          console.log("getTasks faile!" + res);
+          this.tasksLoaded = false;
+        }
+        
       }
     )
  }

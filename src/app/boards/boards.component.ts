@@ -38,6 +38,8 @@ export class BoardsComponent implements OnInit {
     boardId: null
   }
 
+  boardsLoaded: boolean;
+
   selectedBoard: Board;
   id: number;
   name: string;
@@ -71,12 +73,19 @@ export class BoardsComponent implements OnInit {
   scrumUserId = JSON.parse(localStorage.getItem("currentUser")).scrumUserId;
 
   displayAllBoards() {
+    console.log("About to call displayAllBoards() ")
     this.boardsService.getAllBoards().subscribe(
       res => {
-        this.boards = res;
-        localStorage.setItem('currentBoards', JSON.stringify(res));
+        if (res != null){
+          this.boards = res;
+          this.boardsLoaded = true;
+          localStorage.setItem('currentBoards', JSON.stringify(res));
+        }else{
+          this.boardsLoaded = false;
+        }       
       })
   }
+  
 
   onSelect(board: Board, num: number, str: string): void {
 
