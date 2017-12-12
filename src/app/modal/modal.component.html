@@ -14,6 +14,7 @@
             <thead class="thead-inverse">
             <tr>
                 <th class="text-center">Tasks</th>
+                
             </tr>
             </thead>
             <tbody>
@@ -22,9 +23,15 @@
             </tr>
             </tbody>
         </table>
+
+        <!-- <div><label *ngIf="">This is label</label></div> -->
         
     </div>
      </div>
+     
+     <div [hidden] ="tasksLoaded" class="alert alert-danger text-center">
+        <h2 [hidden] ="tasksLoaded" class="text-center" id="getTasksError">{{taskServiceStatus}}</h2>
+      </div>
       <div class="add-task"><input id="description" #description (click) = "description.value = null" [(ngModel)]="task.description" name="description" type="text" class="form-control" placeholder="New Task">
        <button (click) = "taskSubmit()" class="btn btn-md btn-primary">Add New Task</button>
     </div>

@@ -14,7 +14,7 @@ export class SwimlaneService {
   private ADD_USER_TO_BOARD = "/user-service/addUserToBoard"
   private static readonly DELETE_STORY_URL = "/story-manager-service/deleteStory/";
   private static readonly MOVE_STORY_URL ='/story-manager-service/moveStoryLane';
-
+  
   // This setup the header information for the request.
   private headers = new Headers({
     "Content-Type": "application/json",
@@ -24,7 +24,10 @@ export class SwimlaneService {
 
   getAllStories(boardId: number) {
     return this.http.get(this.GET_ALL_STORIES + boardId, this.options)
-                    .map(response => <Story[]> response.json());
+                    .map(response => <Story[]> response.json())
+                    .catch( (error: any) => {
+                      return Observable.throw( new Error("An error occurred with getAllStories: "+ error.status));
+                  });
   }
 
   moveStoryLane(story: MoveStory): Observable<any> {

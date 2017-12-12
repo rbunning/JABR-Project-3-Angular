@@ -70,9 +70,8 @@ export class UserService {
         localStorage.setItem('currentUsertoken', JSON.stringify(
           {userName:user.scrumUserUsername, token: response.access_token }));
 
-        // console.log(localStorage.getItem('currentUsertoken'));
       }, (error) => {
-        // console.log('error in', error);
+        
       });
   }
 }

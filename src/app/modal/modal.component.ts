@@ -27,6 +27,10 @@ export class ModalComponent extends DialogComponent<ModalModel, boolean> impleme
 
   _tasksArray: Task[];
 
+  tasksLoaded: boolean;
+
+  taskServiceStatus: string;
+
   constructor(private taskService: TaskService, dialogService: DialogService, modalService: ModalService) {
     super(dialogService);
 
@@ -34,14 +38,21 @@ export class ModalComponent extends DialogComponent<ModalModel, boolean> impleme
 
   ngOnInit() {
     this.showCurrentTasks();
-
   }
 
   showCurrentTasks() {
+    this.taskServiceStatus = "Loading...";
+    this.tasksLoaded = false;
     this.taskService.getTasks(localStorage.getItem('currentStoryId')).subscribe(
       res => {
         //places reponse of task-manager-service/getAllTasks/{storyId} into task array
-        this._tasksArray = res;
+          this._tasksArray = res;
+          this.tasksLoaded = true;
+        
+      },
+      error => { // if there is an error with getAllStories in swimlaneService, this will execute
+        this.tasksLoaded = false;
+        this.taskServiceStatus = "Task service is temporarily unavailable";
       }
     )
  }
@@ -55,12 +66,9 @@ export class ModalComponent extends DialogComponent<ModalModel, boolean> impleme
 
   //create/add a new task
   taskSubmit() {
-    console.log("Creating new task: ", (this.task).description);
     this.task.storyId = JSON.parse(localStorage.getItem('currentStoryId'));
-    console.log("New task storyId: ", (this.task.storyId));
     this.taskService.createTask(this.task).subscribe(
       res => {
-          console.log("Create Task Success!", res);
         this.showCurrentTasks();
       });
   }

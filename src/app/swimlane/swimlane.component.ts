@@ -58,6 +58,10 @@ export class SwimlaneComponent implements OnInit {
     description : ''
   }
 
+  storyServiceStatus: string;
+
+  storiesLoaded: boolean;
+
   _tasksArray: Task[];
 
   constructor(
@@ -76,7 +80,6 @@ export class SwimlaneComponent implements OnInit {
 
   ngOnInit() {
     this.displayAllStories();
-
     if( this.roleId != 2) {
       this.swimlaneService.hide();
     } else {
@@ -93,15 +96,20 @@ export class SwimlaneComponent implements OnInit {
   }
 
   displayAllStories(): void {
+    this.storyServiceStatus = "Loading...";
+    this.storiesLoaded = false;
     this.swimlaneService.getAllStories(this.currentBoardId).subscribe(
       res => {
-        this.stories = res;
-        // console.log("Stories: ", this.stories);
-        localStorage.setItem('curentStories', JSON.stringify(res));
-      })
-
+          this.stories = res;
+          this.storiesLoaded = true;
+          localStorage.setItem('curentStories', JSON.stringify(res));
+      },
+      error => { // if there is an error with getAllStories in swimlaneService, this will execute
+        this.storiesLoaded = false;
+        this.storyServiceStatus = "Story service is temporarily unavailable";
+      }
+    )
   }
-
 
   switchLane(s: Story, id: number, index: number): void {
     this.story.storyId = id;
@@ -119,16 +127,9 @@ export class SwimlaneComponent implements OnInit {
   loadChart(selectedBoardId){
     this.chartService.getChart(selectedBoardId).subscribe(
       res => {
-        // console.log("loadChart function success!", res);
         localStorage.setItem('currentChart', JSON.stringify(res));
       }
     )
-  }
-
-  getChartSubmit() {
-    //probably could delete this
-    // console.log("getChartSubmit current board id: " + this.currentBoardId);
-    // console.log("getChartSubmit has been clicked!");
   }
 
   taskSubmit() {
@@ -149,11 +150,6 @@ export class SwimlaneComponent implements OnInit {
       });
 
   }
-  /*Add this or change this to display tasks function
-    clear out unneccessary modal stuff from example
-    make sure modal displays current Story name, Story Description, All current tasks,
-           ability to create a new task in modal and hopefully have it show immediately without having to reload or close modal
-  */
 
   //This will have a modal display the story name, story description, all the current tasks for the story, and allow the creation of a new story
   displayTasks(currentStoryId, currentStoryName, currentStoryDescription, currentStoryPoints) {

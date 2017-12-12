@@ -30,6 +30,10 @@ export class BoardsService {
   show() { this.visible = true; }
 
   toggle() { this.visible = !this.visible; }
+  
+  fallbackMessage = {
+    message: ""
+  }
 
   constructor(
     private http: Http,
@@ -37,11 +41,16 @@ export class BoardsService {
     this.visible = false;
   }
 
+  boardArray: Board [];
   //Retrieve all boards from current user
+
   getAllBoards() {
-    console.log(JSON.parse(localStorage.getItem('currentUsertoken')).token)
     return this.http.get(this.GET_ALL_BOARDS, this.options)
-                    .map(response => <Board[]> response.json());
+    .map(response => <Board[]> response.json())
+    .catch( (error: any) => {
+      return Observable.throw( new Error("An error occurred with getAllBoards: "+ error.status));
+  });
+                   
   }
 
   //Delete a board based on boardId
@@ -64,6 +73,7 @@ export class BoardsService {
   }
 
   private handleError(error: any): Promise<any> {
+    console.log("Handled the error");
       return Promise.reject(error.message || error);
   }
 }
