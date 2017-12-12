@@ -40,6 +40,10 @@ export class BoardsComponent implements OnInit {
 
   boardsLoaded: boolean;
 
+  boardServiceStatus: string;
+
+  commentsLoaded: boolean;
+
   selectedBoard: Board;
   id: number;
   name: string;
@@ -73,19 +77,20 @@ export class BoardsComponent implements OnInit {
   scrumUserId = JSON.parse(localStorage.getItem("currentUser")).scrumUserId;
 
   displayAllBoards() {
-    console.log("About to call displayAllBoards() ")
+    this.boardServiceStatus = "Loading...";
+    this.boardsLoaded = false;
     this.boardsService.getAllBoards().subscribe(
       res => {
-        if (res != null){
           this.boards = res;
           this.boardsLoaded = true;
           localStorage.setItem('currentBoards', JSON.stringify(res));
-        }else{
-          this.boardsLoaded = false;
-        }       
-      })
+      },
+      error => { // if there is an error with getAllBoards in boardsService, this will execute
+        this.boardsLoaded = false;
+        this.boardServiceStatus = "Board service is temporarily unavailable";
+      }
+    )
   }
-  
 
   onSelect(board: Board, num: number, str: string): void {
 
@@ -131,6 +136,8 @@ export class BoardsComponent implements OnInit {
   //Display all comments fro one board
   comments: Comment[];
 
+  commentServiceStatus: string;
+
   addComment: AddComment = {
     boardId: null,
     scrumUserId: null,
@@ -138,11 +145,18 @@ export class BoardsComponent implements OnInit {
   }
 
   viewComments(board: Board, id: number): void {
+    this.commentServiceStatus ="Loading...";
+    this.commentsLoaded = false;
     this.commentsService.show();
     var num = id;
     this.commentsService.getCommentsForBoard(num).subscribe(
       res=> {
-        this.comments = res;
+          this.comments = res;
+          this.commentsLoaded = true;
+      },
+      error => { // if there is an error with getCommentsForBoard in commentsService, this will execute
+        this.commentsLoaded = false;
+        this.commentServiceStatus = "Comment service is temporarily unavailable";
       });
   }
 

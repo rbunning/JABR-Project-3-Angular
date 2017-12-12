@@ -20,7 +20,10 @@ export class CommentsService {
 
   getCommentsForBoard(boardId: number) {
     return this.http.get(this.GET_COMMENTS + boardId, this.options)
-                    .map(response => <Comment[]> response.json());
+                    .map(response => <Comment[]> response.json())
+                    .catch( (error: any) => {
+                      return Observable.throw( new Error("An error occurred with getAllStories: "+ error.status));
+                    });
   }
 
   addComment(comment: AddComment): Observable<any> {

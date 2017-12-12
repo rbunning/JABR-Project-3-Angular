@@ -22,25 +22,13 @@ export class TaskService {
     constructor(private http: Http){}
 
     createTask(task: Task): Observable<any> {
-        // console.log('task.service.ts storyId=' + task.storyId + ' task description ' + task.description);
         return this.http.post(TaskService.NEW_TASK_URL, task, this.options);
     }
 
-    //gets input of storyId and adds to getAllTasks URL
-    // will change this later to simply grab the storyid of the story in the lane
-
-    // getTasks(storyIdInput): Observable<any> {
-    //     // console.log('getTasks storyID = ' + storyIdInput);
-    //     return this.http.get(TaskService.getAllTasksByStoryIdURL + storyIdInput,  this.options).map(response => <Task[]> response.json());
-    // }
-
     getTasks(storyIdInput): Observable<any> {
-        // console.log('getTasks storyID = ' + storyIdInput);
         return this.http.get(TaskService.getAllTasksByStoryIdURL + storyIdInput,  this.options)
         .map(response => <Task[]> response.json())
         .catch( (error: any) => {
-            console.log("Error with getTasks");
-
             return Observable.throw( new Error("An error occurred with getTasks: "+ error.status));
         });
     }

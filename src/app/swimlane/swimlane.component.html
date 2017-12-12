@@ -12,7 +12,7 @@
   <br> <br>
 </div>
 <div [hidden] ="storiesLoaded" class="alert alert-danger text-center">
-  <h2 [hidden] ="storiesLoaded" class="text-center" id="getStoriesError">Stories service is temporarily unavailable</h2>
+  <h2 [hidden] ="storiesLoaded" class="text-center" id="getStoriesError">{{storyServiceStatus}}</h2> 
 </div>
 <!-- Swimlane display-->
 <div class="grid grid-pad" style="width:2000px;height:1000px;overflow:auto">
