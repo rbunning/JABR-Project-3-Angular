@@ -40,7 +40,6 @@ export class ChartComponent implements OnInit {
     boardName: ''
   }
   
-
   constructor(
     private chartService: ChartService, 
     private router: Router

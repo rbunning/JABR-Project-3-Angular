@@ -16,21 +16,32 @@ export class LoginComponent implements OnInit {
     scrumUserPassword: ''
   }
 
+  userLoaded: boolean;
+
+  userServiceStatus: string;
+
   constructor(
     private userService: UserService,
     private router: Router
     ) { }
 
   ngOnInit() {
+    this.userLoaded = true;
   }
 
   onSubmit() {
-    // console.log("something happened?", (this.user).scrumUserUsername);
+    this.userServiceStatus = "Loading...";
+    this.userLoaded = false;
     this.userService.loginUser(this.user).subscribe(
       res => {
-        // console.log('Login successful -POST ', res);
+        this.userLoaded = true;
         this.router.navigateByUrl('/home');
         localStorage.setItem('currentUser', JSON.stringify(res));
-    });
+    },
+    error => { // if there is an error with getAllStories in swimlaneService, this will execute
+      this.userLoaded = false;
+      this.userServiceStatus = "Our apologies. The JAB'R system is currently undergoing maintenence. Please try again later.";
+    }
+  )
   }
 }

@@ -4,6 +4,7 @@ import { User } from './user.interface';
 import { Headers, Http, RequestOptions} from '@angular/http';
 import { Base64 } from 'js-base64';
 import 'rxjs/add/operator/delay';
+import { SHA512 } from 'crypto-js';
 
 @Injectable()
 export class UserService {
@@ -20,7 +21,8 @@ export class UserService {
   private url: string;
   private creds: String;
   private updatedUser: string;
-
+  private hashedPwd: string;
+  
   //Inject Http to http thru a constructor.
   constructor(private http: Http){}
 
@@ -55,7 +57,9 @@ export class UserService {
     // This sets up the body information for the request.
     let params = new URLSearchParams();
     params.append('username',user.scrumUserUsername);
-    params.append('password',user.scrumUserPassword);
+    
+    this.hashedPwd = SHA512(user.scrumUserPassword);
+    params.append('password',this.hashedPwd);
     params.append('grant_type','password');
 
     // Send the HTTP POST request.
@@ -66,9 +70,8 @@ export class UserService {
         localStorage.setItem('currentUsertoken', JSON.stringify(
           {userName:user.scrumUserUsername, token: response.access_token }));
 
-        // console.log(localStorage.getItem('currentUsertoken'));
       }, (error) => {
-        // console.log('error in', error);
+        
       });
   }
 }
